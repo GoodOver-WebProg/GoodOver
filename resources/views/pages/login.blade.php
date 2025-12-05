@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Register</title>
+    <title>Login</title>
     @include('layout.bootstrap')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 </head>
@@ -22,37 +22,30 @@
                         <img src="{{ asset('title.png') }}" alt="" class="w-100">
                     </div>
                     <div class="fw-bold text-start fs-3">
-                        Sign up your account
+                        Login to your account
                     </div>
                     <div class="fs-6 mb-3">
-                        And start your journey at GoodOver
+                        And continue your journey at GoodOver
                     </div>
                     {{-- form --}}
-                    <form action="{{ route('route.register') }}" method="post">
+                    <form action="{{ route('route.login') }}" method="post">
                         {{-- label --}}
                         @csrf
                         <div class="form-group mb-2">
                             <label for="email">Email</label>
-                            <input type="text" class="form-control border-black rounded-3 @error('email') is-invalid @enderror" id="email" name="email" value={{ old('email') }}>
+                            <input type="text" class="form-control border-black rounded-3 @error('email') is-invalid @enderror" id="email"
+                                name="email" value={{ old('email') }}>
                             @error('email')
-                                <div class="invalid-feedback" role="alert">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                        <div class="form-group mb-2">
-                            <label for="username">Username</label>
-                            <input type="text" class="form-control border-black rounded-3 @error('username') is-invalid @enderror" id="username" name="username" value={{ old('username') }}>
-                            @error('username')
-                                <div class="invalid-feedback" role="alert">
-                                    {{ $message }}
-                                </div>
+                            <div class="invalid-feedback" role="alert">
+                                {{ $message }}
+                            </div>
                             @enderror
                         </div>
                         <div class="form-group mb-4">
                             <label for="password">Password</label>
                             <div class="input-group">
-                                <input type="password" class="form-control border-black rounded-start-3 @error('password') is-invalid @enderror" id="password" name="password">
+                                <input type="password" class="form-control border-black rounded-start-3 @error('password') is-invalid @enderror"
+                                    id="password" name="password">
                                 <button class="btn border-black rounded-end-3" type="button" id="togglePassword" style="border-left: 0;">
                                     <i class="bi bi-eye" id="eyeIcon"></i>
                                 </button>
@@ -76,20 +69,11 @@
                             });
                         </script>
                         {{-- end of label --}}
-                        <div class="mb-1 text-break" style=" font-size: small; color:#7B7B7B">
-                            By proceeding, you agree to GoodOver's
-                            <a href="#" class="icon-link-hover link-underline-opacity-0 fw-bold" style="color:black">
-                                Privary Policy
-                            </a> and
-                            <a href="#" class="icon-link-hover link-underline-opacity-0 fw-bold" style="color:black">
-                                Terms and Conditions
-                            </a>.
-                        </div>
                         <div class="mb-2 text-break" style=" font-size: small; color:#7B7B7B">
-                            Already have an account?
-                            <a href="{{ route('route.login.view') }}" class="icon-link-hover link-underline-opacity-0 fw-bold"
+                            Doesn't have an account?
+                            <a href="{{ route('route.register.view') }}" class="icon-link-hover link-underline-opacity-0 fw-bold"
                                 style="color:black">
-                                Login
+                                Register
                             </a>
                         </div>
                         <button type="submit" class="btn mb-2 text-white w-100 fw-bold rounded-3" style="background: #086D71; height: 11%">Submit</button>
