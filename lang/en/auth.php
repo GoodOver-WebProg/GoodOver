@@ -13,8 +13,14 @@ return [
     |
     */
 
-    'failed' => 'These credentials do not match our records.',
-    'password' => 'The provided password is incorrect.',
-    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'sign_up' => 'Sign up your account',
+    'sub_1' => 'And start your journey at GoodOver',
+    'agree_text' => 'By proceeding, you agree to GoodOver\'s :privacy_link and :terms_link.',
+    'privacy_policy' => 'Privary Policy',
+    'terms' => 'Terms and Conditions',
+    'account_reminder' => 'Already have an account?',
 
+    'login' => 'Login to your account',
+    'sub_2' => 'And continue your journey at GoodOver',
+    'register_reminder' => 'Doesn\'t have an account?',
 ];

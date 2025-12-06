@@ -22,10 +22,10 @@
                         <img src="{{ asset('title.png') }}" alt="" class="w-100">
                     </div>
                     <div class="fw-bold text-start fs-3">
-                        Login to your account
+                        {{ __('auth.login') }}
                     </div>
                     <div class="fs-6 mb-3">
-                        And continue your journey at GoodOver
+                        {{ __('auth.sub_2') }}
                     </div>
                     {{-- form --}}
                     <form action="{{ route('route.login') }}" method="post">
@@ -70,7 +70,7 @@
                         </script>
                         {{-- end of label --}}
                         <div class="mb-2 text-break" style=" font-size: small; color:#7B7B7B">
-                            Doesn't have an account?
+                            {{ __('auth.register_reminder') }}
                             <a href="{{ route('route.register.view') }}" class="icon-link-hover link-underline-opacity-0 fw-bold"
                                 style="color:black">
                                 Register

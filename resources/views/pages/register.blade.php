@@ -22,10 +22,10 @@
                         <img src="{{ asset('title.png') }}" alt="" class="w-100">
                     </div>
                     <div class="fw-bold text-start fs-3">
-                        Sign up your account
+                        {{ __('auth.sign_up') }}
                     </div>
                     <div class="fs-6 mb-3">
-                        And start your journey at GoodOver
+                        {{ __('auth.sub_1') }}
                     </div>
                     {{-- form --}}
                     <form action="{{ route('route.register') }}" method="post">
@@ -76,21 +76,15 @@
                             });
                         </script>
                         {{-- end of label --}}
-                        <div class="mb-1 text-break" style=" font-size: small; color:#7B7B7B">
-                            By proceeding, you agree to GoodOver's
-                            <a href="#" class="icon-link-hover link-underline-opacity-0 fw-bold" style="color:black">
-                                Privary Policy
-                            </a> and
-                            <a href="#" class="icon-link-hover link-underline-opacity-0 fw-bold" style="color:black">
-                                Terms and Conditions
-                            </a>.
+                        <div class="mb-1 text-break" style="font-size: small; color:#7B7B7B">
+                            {!! __('auth.agree_text', [
+                                'privacy_link' => '<a href="#" class="icon-link-hover link-underline-opacity-0 fw-bold" style="color:black">' . __('auth.privacy_policy') . '</a>',
+                                'terms_link' => '<a href="#" class="icon-link-hover link-underline-opacity-0 fw-bold" style="color:black">' . __('auth.terms') . '</a>'
+                            ]) !!}
                         </div>
                         <div class="mb-2 text-break" style=" font-size: small; color:#7B7B7B">
-                            Already have an account?
-                            <a href="{{ route('route.login.view') }}" class="icon-link-hover link-underline-opacity-0 fw-bold"
-                                style="color:black">
-                                Login
-                            </a>
+                            {{ __('auth.account_reminder') }}
+                            <a href="{{ route('route.login.view') }}" class="icon-link-hover link-underline-opacity-0 fw-bold" style="color:black"> Login </a>
                         </div>
                         <button type="submit" class="btn mb-2 text-white w-100 fw-bold rounded-3" style="background: #086D71; height: 11%">Submit</button>
                     </form>
