@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -24,3 +25,6 @@ Route::prefix('/login')->group(function () {
         return view('pages.login');
     })->name('route.login.view');
 });
+
+Route::get('/profile', [ProfileController::class, 'showProfile'])
+     ->name('route.profile.view');
