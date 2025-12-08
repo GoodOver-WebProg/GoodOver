@@ -1,11 +1,11 @@
 <?php
 
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [PageController::class, 'homepage'])->name('homepage');
+Route::get('/food/{id?}', [PageController::class, 'detailPage'])->name('food.detail');
 
 
 Route::prefix('/register')->group(function () {
