@@ -11,14 +11,14 @@
 </head>
 
 <body>
-    <div class="container-fluid min-h-dvh">
-        <div class="row">
-            <div class="col px-0 vh-100">
+    <div class="container-fluid vh-100">
+        <div class="row h-100">
+            <div class="col px-0 vh-10 d-none d-lg-block">
                 <img src="{{ asset('register.jpg') }}" alt="" class="h-100 w-100 object-fit-cover">
             </div>
             <div class="col px-0 h-max d-flex flex-column align-items-center justify-content-center">
-                <div style="width: 400px">
-                    <div class="mb-4" style="width: 225px">
+                <div style="max-width: 400px; width: 80%">
+                    <div class="mb-4" style="max-width: 225px; width: 90%">
                         <img src="{{ asset('title.png') }}" alt="" class="w-100">
                     </div>
                     <div class="fw-bold text-start fs-3">
