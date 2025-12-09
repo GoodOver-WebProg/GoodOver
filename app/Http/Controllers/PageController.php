@@ -9,12 +9,16 @@ class PageController extends Controller
 {
     public function homepage()
     {
-        $user = Auth::user();
-        return view('pages.homepage',compact('user'));
+        return view('pages.homepage');
     }
 
     public function detailPage()
     {
         return view('pages.detailpage');
+    }
+
+    public function listPage()
+    {
+        return view('pages.listpage');
     }
 }
