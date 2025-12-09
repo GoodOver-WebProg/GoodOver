@@ -31,7 +31,7 @@ class AuthenticationController extends Controller {
 
         if (Auth::attempt($validator->validated())) {
             $request->session()->regenerate();
-            return "berhasil";
+            return redirect()->route('homepage');
         }
     }
 
@@ -67,7 +67,7 @@ class AuthenticationController extends Controller {
 
             $user->syncRoles(['user']);
 
-            return redirect()->route('route.login.view')->with('success', 'Registration successful! Please login.');
+            return redirect()->route('homepage')
         } catch (Exception $error) {
             return $error;
         }

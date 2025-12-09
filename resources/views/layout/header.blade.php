@@ -19,12 +19,20 @@
                     <li class="nav-item">
                         <a class="nav-link text-white" href="{{ route('homepage') }}#foods">Foods</a>
                     </li>
+                    @if (!$user)
                     <li class="nav-item">
                         <a class="nav-link text-white" href="{{ route('route.login.view') }}">Log In</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="{{ route('route.register.view') }}">Sign Up</a>
                     </li>
+                    @else
+                    <li class="nav-item ms-2 d-flex justify-content-center align-items-center">
+                        <div style="height: 35px; width: 35px; overflow: hidden;" class="rounded-circle">
+                            <img src="{{ $user->image_path ? $user->image_path : asset('images/register.jpg') }}" alt="PP" class="h-100 w-100 object-fit-cover">
+                        </div>
+                    </li>
+                    @endif
                 </ul>
             </div>
         </div>
