@@ -1,1 +1,2 @@
-<link rel="stylesheet" href="{{ asset('bootstrap-5.3.8-dist/css/bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
+<script src="{{ asset('bootstrap/js/bootstrap.bundle.min.js') }}"></script>

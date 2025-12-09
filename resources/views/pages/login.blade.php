@@ -14,12 +14,12 @@
     <div class="container-fluid vh-100">
         <div class="row h-100">
             <div class="col px-0 vh-10 d-none d-lg-block">
-                <img src="{{ asset('register.jpg') }}" alt="" class="h-100 w-100 object-fit-cover">
+                <img src="{{ asset('images/register.jpg') }}" alt="" class="h-100 w-100 object-fit-cover">
             </div>
             <div class="col px-0 h-max d-flex flex-column align-items-center justify-content-center">
                 <div style="max-width: 400px; width: 80%">
                     <div class="mb-4" style="max-width: 225px; width: 90%">
-                        <img src="{{ asset('title.png') }}" alt="" class="w-100">
+                        <img src="{{ asset('images/title.png') }}" alt="" class="w-100">
                     </div>
                     <div class="fw-bold text-start fs-3">
                         {{ __('auth.login') }}
@@ -44,9 +44,9 @@
                         <div class="form-group mb-4">
                             <label for="password">Password</label>
                             <div class="input-group">
-                                <input type="password" class="form-control border-black rounded-start-3 @error('password') is-invalid @enderror"
+                                <input type="password" class="form-control border-black border-end-0 rounded-start-3 @error('password') is-invalid @enderror"
                                     id="password" name="password">
-                                <button class="btn border-black rounded-end-3" type="button" id="togglePassword" style="border-left: 0;">
+                                <button class="btn border border-black border-start-0 rounded-end-3" type="button" id="togglePassword" style="border-left: 0;">
                                     <i class="bi bi-eye" id="eyeIcon"></i>
                                 </button>
                             </div>
