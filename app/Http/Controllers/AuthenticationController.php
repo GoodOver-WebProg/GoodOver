@@ -67,7 +67,7 @@ class AuthenticationController extends Controller {
 
             $user->syncRoles(['user']);
 
-            return redirect()->route('homepage')
+            return redirect()->route('homepage');
         } catch (Exception $error) {
             return $error;
         }
