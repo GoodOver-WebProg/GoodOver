@@ -52,8 +52,8 @@
                         <div class="form-group mb-4">
                             <label for="password">Password</label>
                             <div class="input-group">
-                                <input type="password" class="form-control border-black rounded-start-3 @error('password') is-invalid @enderror" id="password" name="password">
-                                <button class="btn border-black rounded-end-3" type="button" id="togglePassword" style="border-left: 0;">
+                                <input type="password" class="form-control rounded-start-3 border border-black border-end-0 @error('password') is-invalid @enderror" id="password" name="password">
+                                <button class="btn border border-black rounded-end-3 border-start-0" type="button" id="togglePassword">
                                     <i class="bi bi-eye" id="eyeIcon"></i>
                                 </button>
                             </div>
