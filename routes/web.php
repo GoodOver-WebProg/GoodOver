@@ -24,3 +24,5 @@ Route::prefix('/login')->group(function () {
         return view('pages.login');
     })->name('route.login.view');
 });
+
+Route::post('/logout',[AuthenticationController::class,'logout'])->name('route.logout');

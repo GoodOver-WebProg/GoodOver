@@ -31,9 +31,27 @@
                     @endguest
                     @auth
                     <li class="nav-item ms-2 d-flex justify-content-center align-items-center">
-                        <div style="height: 35px; width: 35px; overflow: hidden;" class="rounded-circle">
-                            <img src="{{ Auth::user()->image_path ?? asset('images/register.jpg') }}" alt="PP"
-                                class="h-100 w-100 object-fit-cover">
+                        <div class="dropdown">
+                            <button 
+                                class="rounded-circle dropdown-toggle p-0 border-0"
+                                style="height: 35px; width: 35px; overflow: hidden;"
+                                type="button" 
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                            >
+                                <img src="{{ Auth::user()->image_path ?? asset('images/register.jpg') }}" alt="PP" class="h-100 w-100 object-fit-cover">
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li>
+                                    <a href="#" class="dropdown-item">Profile</a>
+                                </li>
+                                <li>
+                                    <form method="POST" action="{{ route('route.logout') }}">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item">Logout</button>
+                                    </form>
+                                </li>
+                            </ul>
                         </div>
                     </li>
                     @endauth
