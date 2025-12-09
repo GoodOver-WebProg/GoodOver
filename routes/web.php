@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SellerFoodController;
 
 Route::get('/', [PageController::class, 'homepage'])->name('homepage');
 Route::get('/food/{id?}', [PageController::class, 'detailPage'])->name('food.detail');
@@ -24,3 +25,9 @@ Route::prefix('/login')->group(function () {
         return view('pages.login');
     })->name('route.login.view');
 });
+
+Route::get('/seller/food/create', [SellerFoodController::class, 'create'])
+    ->name('seller.food.create');
+
+Route::post('/seller/food/store', [SellerFoodController::class, 'store'])
+    ->name('seller.food.store');
