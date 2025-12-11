@@ -19,6 +19,7 @@ return new class extends Migration
             $table->time('opening_time');
             $table->time('closing_time');
             $table->text('image_path');
+            $table->text('location');
             $table->timestamps();
         });
     }
