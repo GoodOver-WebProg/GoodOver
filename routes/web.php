@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
@@ -33,3 +34,5 @@ Route::prefix('/product')->group(function () {
     // Route::get('/', [ProductController::class, 'getAll'])->name('route.product.all');
     Route::get('/', [ProductController::class, 'getProduct'])->name('route.product');
 });
+Route::get('/profile', [ProfileController::class, 'showProfile'])
+     ->name('route.profile.view');
