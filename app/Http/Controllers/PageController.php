@@ -16,9 +16,4 @@ class PageController extends Controller
     {
         return view('pages.detailpage');
     }
-
-    public function listPage()
-    {
-        return view('pages.listpage');
-    }
 }

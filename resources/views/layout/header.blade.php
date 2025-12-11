@@ -19,7 +19,7 @@
                         <a class="nav-link text-white" href="{{ route('homepage') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="{{ route('homepage') }}#foods">Foods</a>
+                        <a class="nav-link text-white" href="{{ route('route.product') }}">Foods</a>
                     </li>
                     @guest
                     <li class="nav-item">

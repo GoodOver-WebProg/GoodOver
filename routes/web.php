@@ -2,11 +2,11 @@
 
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PageController::class, 'homepage'])->name('homepage');
 Route::get('/food/{id?}', [PageController::class, 'detailPage'])->name('food.detail');
-
 
 Route::prefix('/register')->group(function () {
     Route::post('/', [AuthenticationController::class, 'register'])->name('route.register');
@@ -25,4 +25,11 @@ Route::prefix('/login')->group(function () {
     })->name('route.login.view');
 });
 
-Route::post('/logout',[AuthenticationController::class,'logout'])->name('route.logout');
+Route::post('/logout', [AuthenticationController::class, 'logout'])->name('route.logout');
+
+Route::get('/list', [PageController::class, 'listPage'])->name('route.list');
+
+Route::prefix('/product')->group(function () {
+    // Route::get('/', [ProductController::class, 'getAll'])->name('route.product.all');
+    Route::get('/', [ProductController::class, 'getProduct'])->name('route.product');
+});
