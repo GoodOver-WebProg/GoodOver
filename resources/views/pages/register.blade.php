@@ -27,7 +27,7 @@
                         {{ __('auth.sub_1') }}
                     </div>
                     {{-- form --}}
-                    <form action="{{ route('route.register') }}" method="post">
+                    <form action="{{ route('register') }}" method="post">
                         {{-- label --}}
                         @csrf
                         <div class="form-group mb-2">

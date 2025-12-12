@@ -5,17 +5,25 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\SellerFoodController;
+use App\Http\Controllers\SellerFoodCsellerRntroller;
+use App\Http\Controllers\SellerProductController;
 
 Route::get('/', [PageController::class, 'homepage'])->name('homepage');
 Route::get('/food/{id?}', [PageController::class, 'detailPage'])->name('food.detail');
 
 Route::prefix('/register')->group(function () {
-    Route::post('/', [AuthenticationController::class, 'register'])->name('route.register');
+    Route::post('/', [AuthenticationController::class, 'register'])->name('register');
+    Route::post('/seller', [AuthenticationController::class, 'sellerRegister'])
+        ->name('register.seller')
+        ->middleware(['role:user']);
 
-    Route::get('/view', function () {
-        return view('pages.register');
-    })->name('route.register.view');
+    Route::prefix('/view')->group(function(){
+        Route::get('/', [PageController::class, 'userRegister'])->name('register.user.view');
+        Route::get('/seller', [PageController::class, 'sellerRegister'])
+            ->name('register.seller.view')
+            ->middleware(['role:user']);
+    });
+    
 });
 
 Route::prefix('/login')->group(function () {
@@ -33,17 +41,14 @@ Route::post('/logout', [AuthenticationController::class, 'logout'])->name('route
 Route::get('/list', [PageController::class, 'listPage'])->name('route.list');
 
 Route::prefix('/product')->group(function () {
-    // Route::get('/', [ProductController::class, 'getAll'])->name('route.product.all');
     Route::get('/', [ProductController::class, 'getProduct'])->name('route.product');
 });
 Route::get('/profile', [ProfileController::class, 'showProfile'])
     ->name('route.profile.view');
 
-
-// Seller Route
-Route::get('/seller/food/create', [SellerFoodController::class, 'create'])
-    ->name('seller.food.create');
-
-Route::post('/seller/food/store', [SellerFoodController::class, 'store'])
-    ->name('seller.food.store');
-
+Route::prefix('/seller')->middleware(['role:seller'])->group(function () { 
+    Route::get('/dashboard',[SellerProductController::class,'dashboard']);
+    // Route::post('/add');
+    // Route::post('/edit/{id}');
+    // Route::delete('/delete/{id}');
+});

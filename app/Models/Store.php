@@ -15,6 +15,8 @@ class Store extends Model {
         'opening_time',
         'closing_time',
         'image_path',
+        'location',
+        'user_id'
     ];
 
     public function products() {

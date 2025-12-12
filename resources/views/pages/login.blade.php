@@ -71,7 +71,7 @@
                         {{-- end of label --}}
                         <div class="mb-2 text-break" style=" font-size: small; color:#7B7B7B">
                             {{ __('auth.register_reminder') }}
-                            <a href="{{ route('route.register.view') }}" class="icon-link-hover link-underline-opacity-0 fw-bold"
+                            <a href="{{ route('register.user.view') }}" class="icon-link-hover link-underline-opacity-0 fw-bold"
                                 style="color:black">
                                 Register
                             </a>

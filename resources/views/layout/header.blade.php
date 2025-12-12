@@ -26,7 +26,7 @@
                         <a class="nav-link text-white" href="{{ route('route.login.view') }}">Log In</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="{{ route('route.register.view') }}">Sign Up</a>
+                        <a class="nav-link text-white" href="{{ route('register.user.view') }}">Sign Up</a>
                     </li>
                     @endguest
                     @auth

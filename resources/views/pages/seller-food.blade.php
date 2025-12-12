@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layout.master')
 
 @section('content')
 <div class="container mt-4 mb-5">
@@ -7,7 +7,7 @@
         <div class="row">
 
             {{-- LEFT SIDE FORM --}}
-            <form action="{{ route('seller.food.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 {{-- Food Name --}}
@@ -41,8 +41,10 @@
 
             {{-- RIGHT SIDE IMAGE UPLOAD --}}
             <div class="col-md-4 d-flex justify-content-center align-items-center">
-                <div class="border border-2 border-secondary d-flex flex-column justify-content-center align-items-center"
-                     style="width: 100%; height: 350px; border-style: dashed !important; border-radius: 15px;">
+                <div 
+                    class="border border-2 border-secondary d-flex flex-column justify-content-center align-items-center"
+                    style="width: 100%; height: 350px; border-style: dashed !important; border-radius: 15px;"
+                >
                     
                     <div class="text-center">
                         <i class="bi bi-upload" style="font-size: 45px;"></i>

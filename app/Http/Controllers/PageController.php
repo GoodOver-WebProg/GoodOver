@@ -16,4 +16,13 @@ class PageController extends Controller
     {
         return view('pages.detailpage');
     }
+
+    public function userRegister(){
+        return view('pages.register');
+    }
+
+    public function sellerRegister() {
+        
+        return view('pages.seller.register');
+    }
 }
