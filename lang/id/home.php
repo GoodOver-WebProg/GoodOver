@@ -19,5 +19,7 @@ return [
   'no_products' => 'Tidak ada produk ditemukan.',
   'search_results' => 'Hasil Pencarian',
   'see_more' => 'Lihat Produk Lainnya',
+  'explore_todays_highlights' => 'Jelajahi Sorotan Hari Ini',
+  'in_stock' => 'Tersedia',
 ];
 

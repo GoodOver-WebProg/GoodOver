@@ -12,5 +12,6 @@ return [
     'best_seller' => 'Produk Terlaris',
     'fresh_safe' => 'Segar & Aman',
     'available' => 'Tersedia',
+    'login_to_continue' => 'Login untuk melanjutkan',
 ];
 

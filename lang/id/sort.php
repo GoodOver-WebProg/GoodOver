@@ -2,10 +2,11 @@
 
 return [
     'label' => [
-        'price' => 'Harga'
+        'price' => 'Harga',
+        'sort' => 'Urutkan'
     ],
     'price' => [
-        'ascending' => 'Menaik',
-        'descending' => 'Menurun',
+        'ascending' => 'Rendah ke Tinggi',
+        'descending' => 'Tinggi ke Rendah',
     ]
 ];

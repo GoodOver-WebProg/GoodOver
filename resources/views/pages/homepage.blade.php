@@ -137,7 +137,7 @@
                     </p>
                 @else
                     <p class="text-muted" style="font-size: 1.1rem; max-width: 600px; margin: 0 auto;">
-                        {{ __('home.latest_products') }}
+                        {{ __('home.explore_todays_highlights') }}
                     </p>
                 @endif
             </div>
@@ -182,10 +182,10 @@
                                         <p class="card-text fw-bold mb-2" style="color: #086D71; font-size: 1.2rem;">
                                             Rp {{ number_format($product->price ?? 0, 0, ',', '.') }}
                                         </p>
-                                        <a href="{{ route('product.show', $product->id) }}" class="btn btn-sm"
-                                            style="background-color: #086D71; color: white; border-radius: 8px;">
-                                            {{ __('home.view_details') }}
-                                        </a>
+                                        <p class="card-text mb-0" style="font-size: 0.85rem; color: #28a745;">
+                                            <i class="bi bi-check-circle me-1"></i>{{ __('home.in_stock') }}:
+                                            {{ $product->total_quantity ?? 0 }}
+                                        </p>
                                     </div>
                                 </div>
                             </a>
@@ -233,10 +233,10 @@
                                         <p class="card-text fw-bold mb-2" style="color: #086D71; font-size: 1.2rem;">
                                             Rp {{ number_format($product->price ?? 0, 0, ',', '.') }}
                                         </p>
-                                        <a href="{{ route('product.show', $product->id) }}" class="btn btn-sm"
-                                            style="background-color: #086D71; color: white; border-radius: 8px;">
-                                            {{ __('home.view_details') }}
-                                        </a>
+                                        <p class="card-text mb-0" style="font-size: 0.85rem; color: #28a745;">
+                                            <i class="bi bi-check-circle me-1"></i>{{ __('home.in_stock') }}:
+                                            {{ $product->total_quantity ?? 0 }}
+                                        </p>
                                     </div>
                                 </div>
                             </a>

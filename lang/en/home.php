@@ -19,5 +19,7 @@ return [
     'no_products' => 'No products found.',
     'search_results' => 'Search Results',
     'see_more' => 'See More Products',
+    'explore_todays_highlights' => 'Explore Today\'s Highlights',
+    'in_stock' => 'In Stock',
 ];
 

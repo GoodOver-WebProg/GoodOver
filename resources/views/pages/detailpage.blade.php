@@ -155,7 +155,7 @@
                                 style="background-color: #086D71; border-radius: 12px; font-size: 1.1rem; transition: all 0.3s ease;"
                                 onmouseover="this.style.backgroundColor='#065a5e'; this.style.transform='translateY(-2px)'"
                                 onmouseout="this.style.backgroundColor='#086D71'; this.style.transform='translateY(0)'">
-                                <i class="bi bi-box-arrow-in-right me-2"></i> Login untuk melanjutkan
+                                <i class="bi bi-box-arrow-in-right me-2"></i> {{ __('product.login_to_continue') }}
                             </a>
                         @endguest
                     </div>

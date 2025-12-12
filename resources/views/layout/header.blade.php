@@ -54,7 +54,7 @@
                                 <span style="font-size: 0.95rem;">{{ strtoupper(app()->getLocale()) }}</span>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown"
-                                style="border-radius: 8px; border: none; box-shadow: 0 4px 12px rgba(0,0,0,0.15); padding: 4px; min-width: 180px;">
+                                style="border-radius: 8px; border: none; box-shadow: 0 4px 12px rgba(0,0,0,0.15); padding: 4px; min-width: 180px; z-index: 1030 !important;">
                                 <li>
                                     <a class="dropdown-item d-flex align-items-center {{ app()->getLocale() === 'en' ? 'active' : '' }}"
                                         href="{{ route('lang.switch', 'en') }}"
@@ -112,6 +112,22 @@
 
 @push('styles')
     <style>
+        /* Navbar z-index untuk memastikan dropdown language di atas */
+        header {
+            position: relative;
+            z-index: 1030;
+        }
+
+        .navbar {
+            position: relative;
+            z-index: 1030;
+        }
+
+        /* Language dropdown harus di atas semua */
+        #languageDropdown+.dropdown-menu {
+            z-index: 1031 !important;
+        }
+
         /* Navbar underline animation - slide in from left, slide out to right */
         .nav-animated-underline .nav-item {
             position: relative;

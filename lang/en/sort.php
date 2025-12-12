@@ -2,10 +2,11 @@
 
 return [
     'label' => [
-        'price' => 'Price'
+        'price' => 'Price',
+        'sort' => 'Sort'
     ],
     'price' => [
-        'ascending' => 'Ascending',
-        'descending' => 'Descending',
+        'ascending' => 'Low to High',
+        'descending' => 'High to Low',
     ]
 ];

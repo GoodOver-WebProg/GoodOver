@@ -12,5 +12,6 @@ return [
     'best_seller' => 'Best Seller',
     'fresh_safe' => 'Fresh & Safe',
     'available' => 'Available',
+    'login_to_continue' => 'Login to continue',
 ];
 
