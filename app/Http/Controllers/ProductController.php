@@ -4,22 +4,29 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class ProductController extends Controller {
     public function getProduct(Request $request) {
         $filterHeader = [
             'location' => [
-                'Jakarta Utara',
-                'Jakarta Selatan',
-                'Jakarta Barat',
-                'Jakarta Pusat',
-                'Jakarta Timur',
+                'label' => __('filters.location'),
+                'options' => [
+                    ['value' => 'Jakarta Utara', 'label' => __('filters.locations.jakarta_utara')],
+                    ['value' => 'Jakarta Selatan', 'label' => __('filters.locations.jakarta_selatan')],
+                    ['value' => 'Jakarta Barat', 'label' => __('filters.locations.jakarta_barat')],
+                    ['value' => 'Jakarta Timur', 'label' => __('filters.locations.jakarta_timur')],
+                    ['value' => 'Jakarta Pusat', 'label' => __('filters.locations.jakarta_pusat')],
+                ],
             ],
             'category' => [
-                'Food',
-                'Drink',
-                'Dessert',
-                'Mix',
+                'label' => __('filters.category'),
+                'options' => [
+                    ['value' => 'Makanan', 'label' => __('filters.categories.food')],
+                    ['value' => 'Minuman', 'label' => __('filters.categories.drink')],
+                    ['value' => 'Makanan Penutup', 'label' => __('filters.categories.dessert')],
+                    ['value' => 'Campuran', 'label' => __('filters.categories.mix')],
+                ],
             ],
         ];
 

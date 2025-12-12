@@ -17,35 +17,34 @@
             $search = request()->route('search');
             @endphp
             <form action="{{ route('route.product',['search' => $search]) }}" method="GET">
+
                 <input type="hidden" name="sort" value="{{ request('sort','price_asc') }}">
-                @foreach ($filterHeader as $filterBy => $filterVal)
+
+                @foreach ($filterHeader as $filterKey => $filter)
                 <div class="d-flex flex-column justify-content-center align-content-center mt-4">
-                    <h5 class="p-0 m-0 fw-bold">
-                        {{ $filterBy }}
-                    </h5>
-                    @foreach ($filterVal as $val)
-                    @php
-                    $productId ="id" . $val;
-                    $selected = request('filters.' . $filterBy, []);
-                    @endphp
+
+                    <h5 class="p-0 m-0 fw-bold">{{ $filter['label'] }}</h5>
+                    
+                    @php $selected = request("filters.$filterKey", []); @endphp
+
+                    @foreach ($filter['options'] as $opt)
                     <div class="form-check mt-2">
                         <input 
-                            class="form-check-input" 
+                            class="form-check-input"
                             type="checkbox" 
-                            value="{{ $val }}" 
-                            id="{{ $productId }}" 
-                            name="filters[{{ $filterBy }}][]"
-                            @if(in_array($val, $selected)) checked @endif
+                            name="filters[{{ $filterKey }}][]" 
+                            value="{{ $opt['value'] }}" 
+                            @if(in_array($opt['value'], $selected)) checked @endif
                         >
-                        <label class="form-check-label" for="{{ $productId }}">
-                            {{ $val }}
+                        <label>
+                            {{ $opt['label'] }}
                         </label>
                     </div>
                     @endforeach
                 </div>
                 @endforeach
                 <button type="submit" class="btn mt-2 text-light" style="background-color: #086D71;">
-                    Submit Filter
+                    {{ __('filters.submit') }}
                 </button>
             </form>
         </div>
@@ -54,7 +53,7 @@
                 <div class="px-5 py-4 border border-black rounded-2">
                     <div class="mb-2 d-flex justify-content-between  align-items-center  ">
                         <div>
-                            Showing Search Results...
+                            {{ __('filters.search') }}
                         </div>
                         {{-- sort --}}
                         <div class="d-flex align-items-center">
@@ -76,17 +75,20 @@
                                 <div class="dropdown">
                                     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
                                         aria-expanded="false">
-                                        {{ $sort === 'price_desc' ? 'Price: Descending' : 'Price: Ascending' }}
+                                        {{ $sort === 'price_desc' ? 
+                                            __('sort.label.price') . ": ". __('sort.price.descending')
+                                            : __('sort.label.price') . ": ". __('sort.price.ascending') 
+                                        }}
                                     </button>
                                     <ul class="dropdown-menu">
                                         <li>
                                             <button class="dropdown-item" type="submit" name="sort" value="price_asc">
-                                                Price: Ascending
+                                                {{__('sort.label.price') . ": ". __('sort.price.ascending') }}
                                             </button>
                                         </li>
                                         <li>
                                             <button class="dropdown-item" type="submit" name="sort" value="price_desc">
-                                                Price: Descending
+                                                {{__('sort.label.price') . ": ". __('sort.price.descending')}}
                                             </button>
                                         </li>
                                     </ul>
