@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('address');
-            $table->integer('contact');
-            $table->integer('opening_time');
-            $table->integer('closing_time');
+            $table->text('contact');
+            $table->time('opening_time');
+            $table->time('closing_time');
             $table->text('image_path');
+            $table->text('location');
             $table->timestamps();
         });
     }

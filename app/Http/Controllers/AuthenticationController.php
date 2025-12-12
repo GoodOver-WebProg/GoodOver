@@ -67,9 +67,22 @@ class AuthenticationController extends Controller {
 
             $user->syncRoles(['user']);
 
-            return redirect()->route('homepage');
+
+            if (Auth::attempt($validator->validated())) {
+                $request->session()->regenerate();
+                return redirect()->route('homepage');
+            }
+
         } catch (Exception $error) {
             return $error;
         }
+    }
+
+    public function logout(Request $request) {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('homepage');
     }
 }

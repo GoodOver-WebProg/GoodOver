@@ -1,13 +1,14 @@
 <?php
 
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SellerFoodController;
 
 Route::get('/', [PageController::class, 'homepage'])->name('homepage');
 Route::get('/food/{id?}', [PageController::class, 'detailPage'])->name('food.detail');
-
 
 Route::prefix('/register')->group(function () {
     Route::post('/', [AuthenticationController::class, 'register'])->name('route.register');
@@ -26,8 +27,23 @@ Route::prefix('/login')->group(function () {
     })->name('route.login.view');
 });
 
+
+Route::post('/logout', [AuthenticationController::class, 'logout'])->name('route.logout');
+
+Route::get('/list', [PageController::class, 'listPage'])->name('route.list');
+
+Route::prefix('/product')->group(function () {
+    // Route::get('/', [ProductController::class, 'getAll'])->name('route.product.all');
+    Route::get('/', [ProductController::class, 'getProduct'])->name('route.product');
+});
+Route::get('/profile', [ProfileController::class, 'showProfile'])
+    ->name('route.profile.view');
+
+
+// Seller Route
 Route::get('/seller/food/create', [SellerFoodController::class, 'create'])
     ->name('seller.food.create');
 
 Route::post('/seller/food/store', [SellerFoodController::class, 'store'])
     ->name('seller.food.store');
+
