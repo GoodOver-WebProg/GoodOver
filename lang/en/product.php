@@ -1,0 +1,16 @@
+<?php
+
+return [
+    'title' => 'Product Details - GoodOver',
+    'not_found' => 'Product not found.',
+    'description' => 'Description',
+    'available_quantity' => 'Available Quantity',
+    'pickup_duration' => 'Pickup Duration',
+    'reserve_now' => 'Reserve Now',
+    'quantity' => 'Quantity',
+    'price' => 'Price',
+    'best_seller' => 'Best Seller',
+    'fresh_safe' => 'Fresh & Safe',
+    'available' => 'Available',
+];
+

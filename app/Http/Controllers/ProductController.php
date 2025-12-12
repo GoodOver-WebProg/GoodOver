@@ -54,4 +54,15 @@ class ProductController extends Controller {
         $products = $query->get();
         return view('pages.listpage', compact('filterHeader', 'products'));
     }
+
+    public function show($id)
+    {
+        $product = Product::find($id);
+
+        if (!$product) {
+            return redirect()->route('home')->with('error', __('product.not_found'));
+        }
+
+        return view('pages.detailpage', compact('product'));
+    }
 }

@@ -11,6 +11,16 @@
 </head>
 
 <body>
+    {{-- Return to GoodOver Button --}}
+    <div class="position-fixed top-0 start-0 m-3" style="z-index: 1050;">
+        <a href="{{ route('home') }}" class="text-decoration-none text-white d-flex align-items-center"
+            style="font-size: 0.95rem; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='0.8'"
+            onmouseout="this.style.opacity='1'">
+            <i class="bi bi-arrow-left me-2"></i>
+            <span>Return to GoodOver</span>
+        </a>
+    </div>
+
     <div class="container-fluid vh-100">
         <div class="row h-100">
             <div class="col px-0 vh-10 d-none d-lg-block">
@@ -33,27 +43,30 @@
                         @csrf
                         <div class="form-group mb-2">
                             <label for="email">Email</label>
-                            <input type="text" class="form-control border-black rounded-3 @error('email') is-invalid @enderror" id="email"
-                                name="email" value={{ old('email') }}>
+                            <input type="text"
+                                class="form-control border-black rounded-3 @error('email') is-invalid @enderror"
+                                id="email" name="email" value={{ old('email') }}>
                             @error('email')
-                            <div class="invalid-feedback" role="alert">
-                                {{ $message }}
-                            </div>
+                                <div class="invalid-feedback" role="alert">
+                                    {{ $message }}
+                                </div>
                             @enderror
                         </div>
                         <div class="form-group mb-4">
                             <label for="password">Password</label>
                             <div class="input-group">
-                                <input type="password" class="form-control border-black border-end-0 rounded-start-3 @error('password') is-invalid @enderror"
+                                <input type="password"
+                                    class="form-control border-black border-end-0 rounded-start-3 @error('password') is-invalid @enderror"
                                     id="password" name="password">
-                                <button class="btn border border-black border-start-0 rounded-end-3" type="button" id="togglePassword" style="border-left: 0;">
+                                <button class="btn border border-black border-start-0 rounded-end-3" type="button"
+                                    id="togglePassword" style="border-left: 0;">
                                     <i class="bi bi-eye" id="eyeIcon"></i>
                                 </button>
                             </div>
                             @error('password')
-                            <div class="invalid-feedback d-block">
-                                {{ $message }}
-                            </div>
+                                <div class="invalid-feedback d-block">
+                                    {{ $message }}
+                                </div>
                             @enderror
                         </div>
                         <script>
@@ -71,12 +84,13 @@
                         {{-- end of label --}}
                         <div class="mb-2 text-break" style=" font-size: small; color:#7B7B7B">
                             {{ __('auth.register_reminder') }}
-                            <a href="{{ route('route.register.view') }}" class="icon-link-hover link-underline-opacity-0 fw-bold"
-                                style="color:black">
+                            <a href="{{ route('route.register.view') }}"
+                                class="icon-link-hover link-underline-opacity-0 fw-bold" style="color:black">
                                 Register
                             </a>
                         </div>
-                        <button type="submit" class="btn mb-2 text-white w-100 fw-bold rounded-3" style="background: #086D71; height: 11%">Submit</button>
+                        <button type="submit" class="btn mb-2 text-white w-100 fw-bold rounded-3"
+                            style="background: #086D71; height: 11%">Submit</button>
                     </form>
                 </div>
             </div>
