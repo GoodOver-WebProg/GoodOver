@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SellerProfileController;
 
 Route::get('/', [PageController::class, 'homepage'])->name('homepage');
 Route::get('/food/{id?}', [PageController::class, 'detailPage'])->name('food.detail');
@@ -36,3 +37,9 @@ Route::prefix('/product')->group(function () {
 });
 Route::get('/profile', [ProfileController::class, 'showProfile'])
      ->name('route.profile.view');
+
+Route::get('/seller/profile', [SellerProfileController::class, 'edit'])
+    ->name('seller.profile.edit');
+
+Route::post('/seller/profile/update', [SellerProfileController::class, 'update'])
+    ->name('seller.profile.update');
