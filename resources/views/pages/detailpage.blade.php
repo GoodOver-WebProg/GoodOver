@@ -101,7 +101,7 @@
                                 </div>
                             </div>
                         </div>
-                        @if ($product->pickup_duration || $product->pickup_time)
+                        @if ($product->pickup_duration || $product->pickup_duration)
                             <div class="col-6">
                                 <div class="card border-0 shadow-sm h-100"
                                     style="border-radius: 12px; background-color: #f8f9fa;">
@@ -110,7 +110,7 @@
                                         <p class="mb-0 mt-2 small fw-semibold" style="color: #333;">
                                             {{ __('product.pickup_duration') }}</p>
                                         <p class="mb-0 mt-1 fw-bold" style="color: #086D71; font-size: 1.1rem;">
-                                            {{ $product->pickup_duration ?? ($product->pickup_time ?? 'N/A') }}
+                                            {{ $product->pickup_duration ?? ($product->pickup_duration ?? 'N/A') }}
                                         </p>
                                     </div>
                                 </div>

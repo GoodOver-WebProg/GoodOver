@@ -56,9 +56,14 @@ Route::get('/lang/{lang}', function ($lang) {
     }
     return redirect()->back();
 })->name('lang.switch');
+
 Route::prefix('/seller')->middleware(['role:seller'])->group(function () { 
-    Route::get('/dashboard',[SellerProductController::class,'dashboard']);
-    // Route::post('/add');
-    // Route::post('/edit/{id}');
-    // Route::delete('/delete/{id}');
+    Route::get('/dashboard',[SellerProductController::class,'dashboard'])->name('seller.dashboard');
+
+    Route::get('/view/add', [PageController::class, 'sellerAddProduct'])->name('seller.product.add.view');
+    Route::post('/add', [ProductController::class, 'addProduct'])->name('seller.product.add');
+
+    Route::delete('/delete/{id}', [ProductController::class, 'deleteProduct'])->name('seller.product.delete');
+    
+    
 });

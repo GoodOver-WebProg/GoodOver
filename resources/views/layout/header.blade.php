@@ -94,12 +94,18 @@
                                     <li>
                                         <a href="#" class="dropdown-item">Profile</a>
                                     </li>
+                                    @role('seller')
+                                    <li>
+                                        <a href="{{ route('seller.dashboard') }}" class="dropdown-item">Seller Dashboard</a>
+                                    </li>
+                                    @endrole
                                     <li>
                                         <form method="POST" action="{{ route('route.logout') }}">
                                             @csrf
                                             <button type="submit" class="dropdown-item">Logout</button>
                                         </form>
                                     </li>
+                                    
                                 </ul>
                             </div>
                         </li>

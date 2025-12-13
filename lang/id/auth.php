@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Store;
+
 return [
 
     /*
@@ -25,15 +27,17 @@ return [
     'register_reminder' => 'Belum mempunyai akun?',
 
 
-    'registerMessages' => [
+    'Messages' => [
         'required'    => 'Semua atribut wajib diisi',
         'email'       => 'Format email belum sesuai (harus mengandung @)',
         'min'         => ':Attribute minimal berisi :min karakter',
+        'max'         => ':Attribute maksimal berisi :max karakter',
         'date_format' => 'Format waktu harus HH:MM',
         'mimes'       => 'File harus berupa jpg, jpeg, atau png',
         'in'          => 'Pilihan tidak valid',
         'alpha_num'   => ':Attribute hanya boleh huruf dan angka',
-        'unique'      => ':Attribute have already been taken',
+        'unique'      => ':Attribute sudah ada',
+        'integer'     => ':Attribute harus berisi angka',
     ],
 
     'attributes' => [
@@ -43,12 +47,22 @@ return [
         'password' => 'Password',
 
         //seller register
-        'name'         => 'Nama toko',
-        'address'      => 'Alamat toko',
-        'contact'      => 'Kontak toko',
-        'location'     => 'Lokasi toko',
-        'opening_time' => 'Jam buka',
-        'closing_time' => 'Jam tutup',
-        'image_path'   => 'Foto profil toko',
+        'store_name'        => 'Nama toko',
+        'store_address'     => 'Alamat toko',
+        'store_contact'     => 'Kontak toko',
+        'store_location'    => 'Lokasi toko',
+        'opening_time'      => 'Jam buka',
+        'closing_time'      => 'Jam tutup',
+        'store_image_path'  => 'Foto profil toko',
+
+        // add product
+        'product_image_path'    => 'Foto produk',
+        'product_name'          => 'Nama produk',
+        'product_price'         => 'Harga produk',
+        'product_description'   => 'Deskripsi produk',
+        'product_status'        => 'Status produk',
+        'product_total_quantity'=> 'Jumlah stok',
+        'product_category'      => 'Kategori produk',
+        'pickup_duration'       => 'Durasi pengambilan (menit)',
     ],
 ];
