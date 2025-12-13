@@ -7,9 +7,20 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Register</title>
     @include('layout.bootstrap')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 </head>
 
 <body>
+    {{-- Return to GoodOver Button --}}
+    <div class="position-fixed top-0 start-0 m-3" style="z-index: 1050;">
+        <a href="{{ route('home') }}" class="text-decoration-none text-white d-flex align-items-center"
+            style="font-size: 0.95rem; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='0.8'"
+            onmouseout="this.style.opacity='1'">
+            <i class="bi bi-arrow-left me-2"></i>
+            <span>Return to GoodOver</span>
+        </a>
+    </div>
+
     <div class="container-fluid vh-100">
         <div class="row h-100">
             <div class="col px-0 vh-100 d-none d-lg-block">
@@ -32,7 +43,9 @@
                         @csrf
                         <div class="form-group mb-2">
                             <label for="email">Email</label>
-                            <input type="text" class="form-control border-black rounded-3 @error('email') is-invalid @enderror" id="email" name="email" value={{ old('email') }}>
+                            <input type="text"
+                                class="form-control border-black rounded-3 @error('email') is-invalid @enderror"
+                                id="email" name="email" value={{ old('email') }}>
                             @error('email')
                                 <div class="invalid-feedback" role="alert">
                                     {{ $message }}
@@ -41,7 +54,9 @@
                         </div>
                         <div class="form-group mb-2">
                             <label for="username">Username</label>
-                            <input type="text" class="form-control border-black rounded-3 @error('username') is-invalid @enderror" id="username" name="username" value={{ old('username') }}>
+                            <input type="text"
+                                class="form-control border-black rounded-3 @error('username') is-invalid @enderror"
+                                id="username" name="username" value={{ old('username') }}>
                             @error('username')
                                 <div class="invalid-feedback" role="alert">
                                     {{ $message }}
@@ -51,15 +66,18 @@
                         <div class="form-group mb-4">
                             <label for="password">Password</label>
                             <div class="input-group">
-                                <input type="password" class="form-control rounded-start-3 border border-black border-end-0 @error('password') is-invalid @enderror" id="password" name="password">
-                                <button class="btn border border-black rounded-end-3 border-start-0" type="button" id="togglePassword">
+                                <input type="password"
+                                    class="form-control rounded-start-3 border border-black border-end-0 @error('password') is-invalid @enderror"
+                                    id="password" name="password">
+                                <button class="btn border border-black rounded-end-3 border-start-0" type="button"
+                                    id="togglePassword">
                                     <i class="bi bi-eye" id="eyeIcon"></i>
                                 </button>
                             </div>
                             @error('password')
-                            <div class="invalid-feedback d-block">
-                                {{ $message }}
-                            </div>
+                                <div class="invalid-feedback d-block">
+                                    {{ $message }}
+                                </div>
                             @enderror
                         </div>
                         <script>
@@ -77,15 +95,23 @@
                         {{-- end of label --}}
                         <div class="mb-1 text-break" style="font-size: small; color:#7B7B7B">
                             {!! __('auth.agree_text', [
-                                'privacy_link' => '<a href="#" class="icon-link-hover link-underline-opacity-0 fw-bold" style="color:black">' . __('auth.privacy_policy') . '</a>',
-                                'terms_link' => '<a href="#" class="icon-link-hover link-underline-opacity-0 fw-bold" style="color:black">' . __('auth.terms') . '</a>'
+                                'privacy_link' =>
+                                    '<a href="#" class="icon-link-hover link-underline-opacity-0 fw-bold" style="color:black">' .
+                                    __('auth.privacy_policy') .
+                                    '</a>',
+                                'terms_link' =>
+                                    '<a href="#" class="icon-link-hover link-underline-opacity-0 fw-bold" style="color:black">' .
+                                    __('auth.terms') .
+                                    '</a>',
                             ]) !!}
                         </div>
                         <div class="mb-2 text-break" style=" font-size: small; color:#7B7B7B">
                             {{ __('auth.account_reminder') }}
-                            <a href="{{ route('route.login.view') }}" class="icon-link-hover link-underline-opacity-0 fw-bold" style="color:black"> Login </a>
+                            <a href="{{ route('route.login.view') }}"
+                                class="icon-link-hover link-underline-opacity-0 fw-bold" style="color:black"> Login </a>
                         </div>
-                        <button type="submit" class="btn mb-2 text-white w-100 fw-bold rounded-3" style="background: #086D71; height: 11%">Submit</button>
+                        <button type="submit" class="btn mb-2 text-white w-100 fw-bold rounded-3"
+                            style="background: #086D71; height: 11%">Submit</button>
                     </form>
                 </div>
             </div>
