@@ -76,6 +76,98 @@
         .product-card:hover {
             transform: translateY(-8px) scale(1.02);
         }
+
+        /* Hero Section Responsive */
+        .hero-section {
+            min-height: 600px;
+            padding: 100px 0 80px 0;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            line-height: 1.6;
+        }
+
+        .hero-button {
+            font-size: 1.1rem;
+            padding: 1rem 2.5rem;
+        }
+
+        /* Tablet Responsive */
+        @media (max-width: 991.98px) {
+            .hero-section {
+                min-height: 550px;
+                padding: 90px 0 70px 0;
+            }
+
+            .hero-title {
+                font-size: 2.8rem;
+                line-height: 1.3;
+            }
+
+            .hero-subtitle {
+                font-size: 1.15rem;
+                line-height: 1.5;
+            }
+
+            .hero-button {
+                font-size: 1rem;
+                padding: 0.9rem 2.2rem;
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 767.98px) {
+            .hero-section {
+                min-height: auto;
+                padding: 100px 0 80px 0;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+                line-height: 1.3;
+                margin-bottom: 1rem !important;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+                line-height: 1.5;
+                margin-bottom: 1.5rem !important;
+            }
+
+            .hero-button {
+                font-size: 0.95rem;
+                padding: 0.75rem 2rem;
+                display: inline-block;
+                width: auto;
+                margin-bottom: 1rem;
+            }
+        }
+
+        /* Small Mobile */
+        @media (max-width: 575.98px) {
+            .hero-section {
+                padding: 90px 0 70px 0;
+            }
+
+            .hero-title {
+                font-size: 1.75rem;
+            }
+
+            .hero-subtitle {
+                font-size: 0.95rem;
+            }
+
+            .hero-button {
+                font-size: 0.9rem;
+                padding: 0.7rem 1.8rem;
+            }
+        }
     </style>
 @endpush
 
@@ -91,23 +183,21 @@
     @endif
 
     {{-- Hero Section --}}
-    <section class="position-relative"
-        style="min-height: 550px; background-image: url('{{ asset('images/homepages.jpg') }}'); background-size: cover; background-position: center;">
+    <section class="position-relative hero-section"
+        style="background-image: url('{{ asset('images/homepages.jpg') }}'); background-size: cover; background-position: center;">
         <div class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0, 0, 0, 0.3);">
         </div>
-        <div class="container position-relative" style="min-height: 550px; display: flex; align-items: center;">
+        <div class="container position-relative h-100 d-flex align-items-center">
             <div class="row w-100">
-                <div class="col-lg-7">
-                    <h1 class="text-white fw-bold mb-4"
-                        style="font-size: 3.5rem; text-shadow: 2px 2px 8px rgba(0,0,0,0.3); line-height: 1.2;">
+                <div class="col-lg-7 col-md-9 col-12">
+                    <h1 class="text-white fw-bold mb-4 hero-title" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.3);">
                         {{ __('home.hero_title') }}
                     </h1>
-                    <p class="text-white mb-4"
-                        style="font-size: 1.3rem; text-shadow: 1px 1px 4px rgba(0,0,0,0.3); line-height: 1.6;">
+                    <p class="text-white mb-4 hero-subtitle" style="text-shadow: 1px 1px 4px rgba(0,0,0,0.3);">
                         {{ __('home.hero_subtitle') }}
                     </p>
-                    <a href="#foods" class="btn text-white fw-bold px-5 py-3"
-                        style="background: linear-gradient(135deg, #086D71, #0a8a90); border-radius: 12px; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(8, 109, 113, 0.4); transition: all 0.3s ease;"
+                    <a href="#foods" class="btn text-white fw-bold hero-button"
+                        style="background: linear-gradient(135deg, #086D71, #0a8a90); border-radius: 12px; box-shadow: 0 4px 15px rgba(8, 109, 113, 0.4); transition: all 0.3s ease;"
                         onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(8, 109, 113, 0.5)'"
                         onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(8, 109, 113, 0.4)'">
                         {{ __('home.explore_foods') }} <i class="bi bi-arrow-down ms-2"></i>

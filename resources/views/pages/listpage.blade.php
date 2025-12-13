@@ -21,7 +21,7 @@
         /* Sort Dropdown Styling - Modern Minimalist */
         .sort-dropdown-container {
             position: relative;
-            z-index: 1000;
+            z-index: 100;
             margin-bottom: 1.5rem;
         }
 
@@ -30,7 +30,7 @@
         }
 
         .sort-dropdown-container .dropdown-menu {
-            z-index: 1000;
+            z-index: 100;
             border: none;
             box-shadow: 0 4px 12px rgba(8, 109, 113, 0.15);
             border-radius: 12px;
@@ -178,24 +178,115 @@
             box-shadow: 0 4px 12px rgba(8, 109, 113, 0.3);
             background: linear-gradient(135deg, #065a5e 0%, #086D71 100%);
         }
+
+        /* Mobile Filter Toggle Button */
+        .filter-toggle-btn {
+            background-color: #086D71 !important;
+            color: white !important;
+            border: none !important;
+            font-weight: 600;
+            padding: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(8, 109, 113, 0.2);
+            border-radius: 8px;
+        }
+
+        .filter-toggle-btn:hover,
+        .filter-toggle-btn:focus,
+        .filter-toggle-btn:active {
+            background-color: #065a5e !important;
+            border-color: #065a5e !important;
+            color: white !important;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(8, 109, 113, 0.3);
+        }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 767.98px) {
+            /* Filter header hidden on mobile - adjust form spacing */
+            #filterCollapse form {
+                margin-top: 0;
+            }
+
+            .filter-section:first-of-type {
+                margin-top: 0;
+            }
+
+            /* Products container on mobile */
+            .products-container {
+                padding: 1rem !important;
+                margin-top: 1rem !important;
+            }
+
+            /* Sort dropdown on mobile */
+            .sort-dropdown-container {
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+
+            .sort-dropdown-container .d-flex {
+                flex-direction: column;
+                align-items: flex-start !important;
+                width: 100%;
+            }
+
+            .sort-label {
+                margin-bottom: 0.5rem;
+                font-size: 0.9rem;
+            }
+
+            .sort-dropdown-container .dropdown-toggle {
+                width: 100%;
+                text-align: left;
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+
+            /* Product cards on mobile */
+            .product-card .card-img-top {
+                height: 200px !important;
+            }
+
+            /* Disable hover effect on mobile */
+            .product-card:hover {
+                transform: none;
+            }
+
+            /* Filter collapse on mobile */
+            #filterCollapse {
+                background-color: #f8f9fa;
+                padding: 1rem;
+                border-radius: 8px;
+                margin-bottom: 1rem;
+            }
+        }
     </style>
 @endpush
 
 @section('content')
     <section class='container min-vh-100 position-relative'>
         <div class="row">
-            <div class="col col-2 d-flex flex-column align-items-baseline">
-                <div class="filter-header">
-                    <i class="bi bi-funnel filter-icon"></i>
-                    <h3 class="filter-title">
-                        Filter
-                    </h3>
-                </div>
-                {{-- Filter --}}
-                @php
-                    $search = request()->route('search');
-                @endphp
-                <form action="{{ route('route.product', ['search' => $search]) }}" method="GET">
+            <div class="col-lg-3 col-md-4 col-12 d-flex flex-column align-items-baseline">
+                {{-- Mobile Filter Toggle Button --}}
+                <button class="btn btn-outline-primary w-100 mb-3 mt-4 d-lg-none filter-toggle-btn" type="button" 
+                    data-bs-toggle="collapse" data-bs-target="#filterCollapse" aria-expanded="false" 
+                    aria-controls="filterCollapse">
+                    <i class="bi bi-funnel me-2"></i>Filter & Sort
+                </button>
+
+                {{-- Filter Content --}}
+                <div class="collapse d-lg-block w-100" id="filterCollapse">
+                    <div class="filter-header d-none d-lg-flex">
+                        <i class="bi bi-funnel filter-icon"></i>
+                        <h3 class="filter-title">
+                            Filter
+                        </h3>
+                    </div>
+                    {{-- Filter --}}
+                    @php
+                        $search = request()->route('search');
+                    @endphp
+                    <form action="{{ route('route.product', ['search' => $search]) }}" method="GET">
 
                     <input type="hidden" name="sort" value="{{ request('sort', 'price_asc') }}">
 
@@ -219,10 +310,11 @@
                     <button type="submit" class="filter-submit-btn btn text-light">
                         {{ __('filters.submit') }}
                     </button>
-                </form>
+                    </form>
+                </div>
             </div>
-            <div class="col col-10 min-vh-100 ">
-                <div class="mt-4 h-100">
+            <div class="col-lg-9 col-md-8 col-12 min-vh-100">
+                <div class="mt-lg-4 mt-md-4 mt-3 h-100">
                     <div class="px-5 py-4 border border-black rounded-2">
                         <div class="mb-2 d-flex justify-content-end align-items-center">
                             {{-- sort --}}
@@ -272,7 +364,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
+                        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3 g-md-4">
                             @foreach ($products as $product)
                                 <div class="col">
                                     <a href="{{ route('product.show', $product->id) }}"

@@ -12,14 +12,44 @@
 
 <body>
     {{-- Return to GoodOver Button --}}
-    <div class="position-fixed top-0 start-0 m-3" style="z-index: 1050;">
-        <a href="{{ route('home') }}" class="text-decoration-none text-white d-flex align-items-center"
-            style="font-size: 0.95rem; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='0.8'"
-            onmouseout="this.style.opacity='1'">
-            <i class="bi bi-arrow-left me-2"></i>
-            <span>Return to GoodOver</span>
+    <div class="position-fixed top-0 start-0 m-3 back-to-goodover-btn" style="z-index: 1050;">
+        <a href="{{ route('home') }}" class="btn btn-sm d-flex align-items-center text-decoration-none"
+            style="background-color: #086D71; color: white; border-radius: 8px; padding: 8px 16px; font-size: 0.9rem; font-weight: 500; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(8, 109, 113, 0.3);"
+            onmouseover="this.style.backgroundColor='#065a5e'; this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px rgba(8, 109, 113, 0.4)'"
+            onmouseout="this.style.backgroundColor='#086D71'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(8, 109, 113, 0.3)'">
+            <i class="bi bi-arrow-left me-2" style="font-size: 1rem;"></i>
+            <span class="back-text">Return to GoodOver</span>
         </a>
     </div>
+
+    <style>
+        /* Back to GoodOver Button Responsive */
+        @media (max-width: 767.98px) {
+            .back-to-goodover-btn {
+                margin: 0.75rem !important;
+            }
+
+            .back-to-goodover-btn a {
+                padding: 6px 12px !important;
+                font-size: 0.85rem !important;
+            }
+
+            .back-to-goodover-btn .back-text {
+                display: none;
+            }
+
+            .back-to-goodover-btn i {
+                margin-right: 0 !important;
+                font-size: 1.1rem !important;
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 991.98px) {
+            .back-to-goodover-btn .back-text {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
 
     <div class="container-fluid vh-100">
         <div class="row h-100">
