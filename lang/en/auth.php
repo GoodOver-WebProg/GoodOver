@@ -23,4 +23,31 @@ return [
     'login' => 'Login to your account',
     'sub_2' => 'And continue your journey at GoodOver',
     'register_reminder' => 'Doesn\'t have an account?',
+
+    'registerMessages' => [
+        'required'    => 'All fields are required.',
+        'email'       => 'Email format is invalid (must contain "@").',
+        'min'         => ':Attribute must be at least :min characters.',
+        'date_format' => 'Time format must be HH:MM.',
+        'mimes'       => 'File must be a jpg, jpeg, or png.',
+        'in'          => 'Invalid selected value.',
+        'alpha_num'   => ':Attribute may only contain letters and numbers.',
+        'unique'      => ':Attribute have already been taken',
+    ],
+
+    'attributes' => [
+        // user register
+        'email'    => 'Email',
+        'username' => 'Username',
+        'password' => 'Password',
+
+        // seller register
+        'name'         => 'Store name',
+        'address'      => 'Store address',
+        'contact'      => 'Store contact',
+        'location'     => 'Store location',
+        'opening_time' => 'Opening time',
+        'closing_time' => 'Closing time',
+        'image_path'   => 'Store profile image',
+    ],
 ];
