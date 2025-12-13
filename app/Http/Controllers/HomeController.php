@@ -22,7 +22,7 @@ class HomeController extends Controller
 
         // Order by updated_at desc (latest products)
         if ($isSearch) {
-            $products = $query->orderBy('updated_at', 'desc')->paginate(12);
+            $products = $query->orderBy('updated_at', 'desc')->where('status', 'active')->paginate(12);
             $latestProducts = collect();
             $totalProducts = $products->total();
         } else {

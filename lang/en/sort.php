@@ -8,5 +8,6 @@ return [
     'price' => [
         'ascending' => 'Low to High',
         'descending' => 'High to Low',
-    ]
+    ],
+    'newest' => 'Newest'
 ];

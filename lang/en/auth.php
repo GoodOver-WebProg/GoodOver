@@ -24,20 +24,17 @@ return [
     'sub_2' => 'And continue your journey at GoodOver',
     'register_reminder' => 'Doesn\'t have an account?',
 
-    // ==============================
-    // Merge registerMessages + Messages
-    // ==============================
-    'registerMessages' => [
-        'required' => 'All fields are required.',
-        'email' => 'Email format is invalid (must contain "@").',
-        'min' => ':Attribute must be at least :min characters.',
-        'max' => ':Attribute have reach the max, :max characters.',
+    'Messages' => [
+        'required'    => 'All fields are required.',
+        'email'       => 'Email format is invalid (must contain "@").',
+        'min'         => ':Attribute must be at least :min characters.',
+        'max'         => ':Attribute have reach the max, :max characters.',
         'date_format' => 'Time format must be HH:MM.',
-        'mimes' => 'File must be a jpg, jpeg, or png.',
-        'in' => 'Invalid selected value.',
-        'alpha_num' => ':Attribute may only contain letters and numbers.',
-        'unique' => ':Attribute have already been taken',
-        'integer' => ':Attribute have to be an integer',
+        'mimes'       => 'File must be a jpg, jpeg, or png.',
+        'in'          => 'Invalid selected value.',
+        'alpha_num'   => ':Attribute may only contain letters and numbers.',
+        'unique'      => ':Attribute have already been taken',
+        'integer'     => ':Attribute have to be an integer',
     ],
 
     'attributes' => [
@@ -46,30 +43,24 @@ return [
         'username' => 'Username',
         'password' => 'Password',
 
-        // seller register (merged)
-        'name' => 'Store name',
-        'address' => 'Store address',
-        'contact' => 'Store contact',
-        'location' => 'Store location',
+        // seller register
+        'store_name'         => 'Store name',
+        'store_address'      => 'Store address',
+        'store_contact'      => 'Store contact',
+        'store_location'     => 'Store location',
         'opening_time' => 'Opening time',
         'closing_time' => 'Closing time',
-        'image_path' => 'Store profile image',
+        'store_image_path'   => 'Store profile image',
 
-        // stash additions (keeping these)
-        'store_name' => 'Store name',
-        'store_address' => 'Store address',
-        'store_contact' => 'Store contact',
-        'store_location' => 'Store location',
-        'store_image_path' => 'Store profile image',
-
-        // product
-        'product_image_path' => 'Product image',
-        'product_name' => 'Product name',
-        'product_price' => 'Product price',
-        'product_description' => 'Product description',
-        'product_status' => 'Product status',
+        // add product
+        'product_image_path'     => 'Product image',
+        'product_name'           => 'Product name',
+        'product_price'          => 'Product price',
+        'product_description'    => 'Product description',
+        'product_status'         => 'Product status',
         'product_total_quantity' => 'Total quantity',
-        'product_category' => 'Product category',
-        'pickup_duration' => 'Pickup duration (minutes)',
+        'product_category'       => 'Product category',
+        'pickup_duration'        => 'Pickup duration (minutes)',
+
     ],
 ];

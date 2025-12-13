@@ -13,5 +13,8 @@ return [
     'fresh_safe' => 'Segar & Aman',
     'available' => 'Tersedia',
     'login_to_continue' => 'Login untuk melanjutkan',
+    'delete_success' => 'Produk berhasil dihapus',
+    'delete_fail' => 'Terjadi error ketika menghapus produk, coba lagi nanti',
+    'create_success' => 'Produk berhasil ditambahkan',
 ];
 
