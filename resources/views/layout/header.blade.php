@@ -32,10 +32,10 @@
                     @auth
                     <li class="nav-item ms-2 d-flex justify-content-center align-items-center">
                         <div class="dropdown">
-                            <button 
+                            <button
                                 class="rounded-circle dropdown-toggle p-0 border-0"
                                 style="height: 35px; width: 35px; overflow: hidden;"
-                                type="button" 
+                                type="button"
                                 data-bs-toggle="dropdown"
                                 aria-expanded="false"
                             >
@@ -43,7 +43,7 @@
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li>
-                                    <a href="#" class="dropdown-item">Profile</a>
+                                    <a href="{{ route('route.profile.view', Auth::user()->id) }}" class="dropdown-item">Profile</a>
                                 </li>
                                 <li>
                                     <form method="POST" action="{{ route('route.logout') }}">
