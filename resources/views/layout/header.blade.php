@@ -92,7 +92,7 @@
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     <li>
-                                        <a href="#" class="dropdown-item">Profile</a>
+                                        <a href="{{ route('route.profile.view', Auth::user()->id)}}" class="dropdown-item">Profile</a>
                                     </li>
                                     @role('seller')
                                     <li>
@@ -105,7 +105,7 @@
                                             <button type="submit" class="dropdown-item">Logout</button>
                                         </form>
                                     </li>
-                                    
+
                                 </ul>
                             </div>
                         </li>
