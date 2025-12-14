@@ -98,7 +98,9 @@
 
                 {{-- Right Side Menu --}}
                 <ul class="navbar-nav ms-auto align-items-center nav-animated-underline">
-                    <li class="nav-item"><a class="nav-link text-white" href="{{ route('home') }}">Home</a></li>
+                    @auth
+                        <li class="nav-item"><a class="nav-link text-white" href="{{ route('route.profile.history',Auth::user()->id) }}">History</a></li>
+                    @endauth
                     <li class="nav-item"><a class="nav-link text-white" href="{{ route('route.product') }}">Foods</a>
                     </li>
 
