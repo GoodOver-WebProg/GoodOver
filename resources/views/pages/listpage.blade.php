@@ -18,7 +18,6 @@
             z-index: 2;
         }
 
-        /* Sort Dropdown Styling - Modern Minimalist */
         .sort-dropdown-container {
             position: relative;
             z-index: 100;
@@ -90,7 +89,6 @@
             margin-right: 12px;
         }
 
-        /* Filter Header Styling - Clean & Simple */
         .filter-header {
             display: flex;
             align-items: center;
@@ -113,7 +111,6 @@
             margin: 0;
         }
 
-        /* Filter Section Styling */
         .filter-section {
             margin-top: 2rem;
         }
@@ -179,7 +176,6 @@
             background: linear-gradient(135deg, #065a5e 0%, #086D71 100%);
         }
 
-        /* Mobile Filter Toggle Button */
         .filter-toggle-btn {
             background-color: #086D71 !important;
             color: white !important;
@@ -201,9 +197,7 @@
             box-shadow: 0 4px 12px rgba(8, 109, 113, 0.3);
         }
 
-        /* Mobile Responsive Styles */
         @media (max-width: 767.98px) {
-            /* Filter header hidden on mobile - adjust form spacing */
             #filterCollapse form {
                 margin-top: 0;
             }
@@ -212,13 +206,11 @@
                 margin-top: 0;
             }
 
-            /* Products container on mobile */
             .products-container {
                 padding: 1rem !important;
                 margin-top: 1rem !important;
             }
 
-            /* Sort dropdown on mobile */
             .sort-dropdown-container {
                 width: 100%;
                 margin-bottom: 1rem;
@@ -242,17 +234,14 @@
                 font-size: 0.9rem;
             }
 
-            /* Product cards on mobile */
             .product-card .card-img-top {
                 height: 200px !important;
             }
 
-            /* Disable hover effect on mobile */
             .product-card:hover {
                 transform: none;
             }
 
-            /* Filter collapse on mobile */
             #filterCollapse {
                 background-color: #f8f9fa;
                 padding: 1rem;

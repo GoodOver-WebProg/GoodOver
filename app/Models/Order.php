@@ -14,9 +14,26 @@ class Order extends Model
         'store_id',
         'status',
         'order_number',
+        'total_price',
     ]);
 
-    public function orderItems() {
+    public function orderItems()
+    {
         return $this->hasMany(OrderItem::class);
+    }
+
+    public function items()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(\App\Models\User::class);
+    }
+
+    public function store()
+    {
+        return $this->belongsTo(\App\Models\Store::class);
     }
 }

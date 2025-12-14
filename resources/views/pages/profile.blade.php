@@ -37,7 +37,7 @@
                             <div>{{ $user->email }}</div>
                         </div>
 
-                        <a href="{{ route('route.profile.history', $user->id) }}" class="btn-history">History</a>
+                        <a href="{{ route('route.profile.history', $user->id) }}" class="btn-history">{{ __('profile.history') }}</a>
                     </div>
                 </div>
             </div>
@@ -170,12 +170,110 @@
                 box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.02);
             }
 
-            /* Responsive
-            @media (max-width:768px){
-                .profile-bar { padding:18px; gap:14px; flex-direction:column; align-items:flex-start; }
-                .profile-actions { align-self:flex-end; width:100%; text-align:right; }
-                .avatar { margin-top:-60px; width:110px; height:110px; flex:0 0 110px; }
-                .info-wrap { padding:36px 18px; }
-            } */
+            @media (max-width: 991.98px) {
+                .profile-bar {
+                    padding: 20px;
+                    gap: 20px;
+                }
+
+                .avatar {
+                    width: 140px;
+                    height: 140px;
+                    flex: 0 0 140px;
+                    margin-top: -70px;
+                }
+
+                .profile-meta h2 {
+                    font-size: 24px;
+                }
+
+                .info-wrap {
+                    padding: 40px 20px;
+                }
+            }
+
+            @media (max-width: 767.98px) {
+                .profile-bar {
+                    padding: 18px;
+                    gap: 14px;
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+
+                .profile-actions {
+                    align-self: flex-end;
+                    width: 100%;
+                    text-align: right;
+                }
+
+                .avatar {
+                    margin-top: -60px;
+                    width: 110px;
+                    height: 110px;
+                    flex: 0 0 110px;
+                }
+
+                .profile-meta {
+                    width: 100%;
+                }
+
+                .profile-meta h2 {
+                    font-size: 20px;
+                }
+
+                .profile-meta .sub {
+                    flex-direction: column;
+                    gap: 8px;
+                    align-items: flex-start;
+                }
+
+                .info-wrap {
+                    padding: 36px 18px;
+                }
+
+                .contact-list {
+                    max-width: 100%;
+                }
+
+                .btn-history {
+                    width: 100%;
+                    text-align: center;
+                    padding: 12px 24px;
+                }
+
+                .hero-cover {
+                    height: 180px;
+                }
+            }
+
+            @media (max-width: 575.98px) {
+                .profile-bar {
+                    padding: 16px;
+                }
+
+                .avatar {
+                    width: 100px;
+                    height: 100px;
+                    flex: 0 0 100px;
+                    margin-top: -50px;
+                }
+
+                .profile-meta h2 {
+                    font-size: 18px;
+                }
+
+                .info-wrap {
+                    padding: 24px 16px;
+                }
+
+                .contact-item {
+                    font-size: 14px;
+                }
+
+                .btn-history {
+                    padding: 10px 20px;
+                    font-size: 14px;
+                }
+            }
         </style>
     @endpush

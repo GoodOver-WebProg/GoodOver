@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SellerProductController;
 
@@ -44,6 +45,10 @@ Route::get('/list', [PageController::class, 'listPage'])->name('route.list');
 
 Route::prefix('/product')->group(function () {
     Route::get('/', [ProductController::class, 'getProduct'])->name('route.product');
+});
+
+Route::prefix('/order')->middleware(['auth'])->group(function () {
+    Route::post('/reserve', [OrderController::class, 'reserve'])->name('order.reserve');
 });
 Route::prefix('/profile')->group(function () {
     Route::get('/{id}', [ProfileController::class, 'showProfile'])->name('route.profile.view');
