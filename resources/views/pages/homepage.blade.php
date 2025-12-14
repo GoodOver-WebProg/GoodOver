@@ -77,7 +77,6 @@
             transform: translateY(-8px) scale(1.02);
         }
 
-        /* Hero Section Responsive */
         .hero-section {
             min-height: 600px;
             padding: 100px 0 80px 0;
@@ -98,7 +97,6 @@
             padding: 1rem 2.5rem;
         }
 
-        /* Tablet Responsive */
         @media (max-width: 991.98px) {
             .hero-section {
                 min-height: 550px;
@@ -121,7 +119,6 @@
             }
         }
 
-        /* Mobile Responsive */
         @media (max-width: 767.98px) {
             .hero-section {
                 min-height: auto;
@@ -149,7 +146,6 @@
             }
         }
 
-        /* Small Mobile */
         @media (max-width: 575.98px) {
             .hero-section {
                 padding: 90px 0 70px 0;

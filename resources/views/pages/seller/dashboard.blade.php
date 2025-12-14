@@ -93,10 +93,8 @@
             margin-right: 12px;
         }
 
-        /* pagination */
         .pagination { gap: .35rem; }
         
-        /* Links */
         .page-link{
         color: #086D71;
         border-radius: 10px;
@@ -113,21 +111,18 @@
         border-bottom-right-radius: 10px;
         }
         
-        /* Hover */
         .page-link:hover{
         color: #065a5e;
         background-color: rgba(8, 109, 113, .08);
         border-color: rgba(8, 109, 113, .35);
         }
         
-        /* Active page */
         .page-item.active .page-link{
         background-color: #086D71;
         border-color: #086D71;
         color: #fff;
         }
         
-        /* Disabled */
         .page-item.disabled .page-link{
         color: #9aa4ad;
         }

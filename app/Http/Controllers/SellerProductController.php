@@ -33,7 +33,6 @@ class SellerProductController extends Controller {
 
         $products = $query->paginate(12)->withQueryString();
 
-        //stats
         $totalProduct = Product::where('store_id', $store->id)->count();
         $activeProduct = Product::where('store_id', $store->id)->where('status', 'active')->count();
 

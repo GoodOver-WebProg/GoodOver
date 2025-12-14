@@ -8,17 +8,17 @@
             <div class="d-flex align-items-center order-lg-2 gap-3">
                 {{-- User Avatar - Show on mobile, outside collapse --}}
                 @auth
-                    <div class="dropdown d-lg-none">
+                    <div class="dropdown d-lg-none" style="position: relative; z-index: 1050;">
                         <button class="rounded-circle dropdown-toggle p-0 border-0 user-avatar-mobile"
-                            style="height: 38px; width: 38px; overflow: hidden;" type="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
+                            style="height: 38px; width: 38px; overflow: hidden; cursor: pointer; position: relative; z-index: 1051;"
+                            type="button" data-bs-toggle="dropdown" aria-expanded="false" id="mobileProfileDropdown">
                             <img src="{{ Auth::user()->image_path ?? asset('images/register.jpg') }}" alt="User Avatar"
-                                class="h-100 w-100 object-fit-cover">
+                                class="h-100 w-100 object-fit-cover" style="pointer-events: none;">
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end"
-                            style="border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+                            style="border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); position: absolute; z-index: 1052; margin-top: 8px;">
                             <li>
-                                <a href="#" class="dropdown-item">
+                                <a href="{{ route('route.profile.view', Auth::user()->id) }}" class="dropdown-item">
                                     <i class="bi bi-person me-2"></i>Profile
                                 </a>
                             </li>
@@ -29,7 +29,9 @@
                                     </a>
                                 </li>
                             @endrole
-                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
                             <li>
                                 <form method="POST" action="{{ route('route.logout') }}">
                                     @csrf
@@ -97,11 +99,14 @@
                 {{-- Right Side Menu --}}
                 <ul class="navbar-nav ms-auto align-items-center nav-animated-underline">
                     <li class="nav-item"><a class="nav-link text-white" href="{{ route('home') }}">Home</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="{{ route('route.product') }}">Foods</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="{{ route('route.product') }}">Foods</a>
+                    </li>
 
                     @guest
-                        <li class="nav-item"><a class="nav-link text-white" href="{{ route('route.login.view') }}">Log In</a></li>
-                        <li class="nav-item"><a class="nav-link text-white" href="{{ route('register.user.view') }}">Sign Up</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="{{ route('route.login.view') }}">Log
+                                In</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="{{ route('register.user.view') }}">Sign
+                                Up</a></li>
 
                         {{-- Language Switcher Desktop --}}
                         <li class="nav-item dropdown language-dropdown d-none d-lg-block">
@@ -114,17 +119,19 @@
                                 </span>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end"
-                                style="border-radius: 10px; border: none; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+                                style="border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); min-width: 120px; padding: 0.5rem;">
                                 <li>
                                     <a class="dropdown-item text-center {{ app()->getLocale() === 'en' ? 'active' : '' }}"
-                                        href="{{ route('lang.switch', 'en') }}">
-                                        English
+                                        href="{{ route('lang.switch', 'en') }}"
+                                        style="padding: 10px; border-radius: 6px; {{ app()->getLocale() === 'en' ? 'background-color: #086D71 !important; color: white !important;' : 'color: #333;' }}">
+                                        EN
                                     </a>
                                 </li>
                                 <li>
                                     <a class="dropdown-item text-center {{ app()->getLocale() === 'id' ? 'active' : '' }}"
-                                        href="{{ route('lang.switch', 'id') }}">
-                                        Bahasa Indonesia
+                                        href="{{ route('lang.switch', 'id') }}"
+                                        style="padding: 10px; border-radius: 6px; {{ app()->getLocale() === 'id' ? 'background-color: #086D71 !important; color: white !important;' : 'color: #333;' }}">
+                                        ID
                                     </a>
                                 </li>
                             </ul>
@@ -136,24 +143,26 @@
                         <li class="nav-item dropdown language-dropdown d-none d-lg-block">
                             <a class="nav-link text-white dropdown-toggle d-flex align-items-center" href="#"
                                 id="languageDropdownAuth" role="button" data-bs-toggle="dropdown" aria-expanded="false"
-                                style="cursor: pointer; padding: 8px 12px;">
+                                style="cursor: pointer; padding: 8px 12px; border-radius: 6px; transition: background-color 0.2s;">
                                 <i class="bi bi-globe me-2"></i>
                                 <span class="language-text">
                                     {{ app()->getLocale() === 'en' ? 'English' : 'Bahasa Indonesia' }}
                                 </span>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end"
-                                style="border-radius: 10px; border: none; box-shadow: 0 4px 12px rgba(0,0,0,0.15); padding: 8px;">
+                                style="border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); min-width: 120px; padding: 0.5rem;">
                                 <li>
                                     <a class="dropdown-item text-center {{ app()->getLocale() === 'en' ? 'active' : '' }}"
-                                        href="{{ route('lang.switch', 'en') }}">
-                                        English
+                                        href="{{ route('lang.switch', 'en') }}"
+                                        style="padding: 10px; border-radius: 6px; {{ app()->getLocale() === 'en' ? 'background-color: #086D71 !important; color: white !important;' : 'color: #333;' }}">
+                                        EN
                                     </a>
                                 </li>
                                 <li>
                                     <a class="dropdown-item text-center {{ app()->getLocale() === 'id' ? 'active' : '' }}"
-                                        href="{{ route('lang.switch', 'id') }}">
-                                        Bahasa Indonesia
+                                        href="{{ route('lang.switch', 'id') }}"
+                                        style="padding: 10px; border-radius: 6px; {{ app()->getLocale() === 'id' ? 'background-color: #086D71 !important; color: white !important;' : 'color: #333;' }}">
+                                        ID
                                     </a>
                                 </li>
                             </ul>
@@ -171,12 +180,14 @@
                                 <ul class="dropdown-menu dropdown-menu-end"
                                     style="border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
                                     <li>
-                                        <a href="{{ route('route.profile.view', Auth::user()->id)}}" class="dropdown-item">Profile</a>
+                                        <a href="{{ route('route.profile.view', Auth::user()->id) }}"
+                                            class="dropdown-item">Profile</a>
                                     </li>
                                     @role('seller')
-                                    <li>
-                                        <a href="{{ route('seller.dashboard') }}" class="dropdown-item">Seller Dashboard</a>
-                                    </li>
+                                        <li>
+                                            <a href="{{ route('seller.dashboard') }}" class="dropdown-item">Seller
+                                                Dashboard</a>
+                                        </li>
                                     @endrole
                                     <li>
                                         <form method="POST" action="{{ route('route.logout') }}">
@@ -198,7 +209,30 @@
 </header>
 
 @push('styles')
-<style>
-/* (CSS tetap sama seperti versi yang kamu kirim) */
-</style>
+    <style>
+        .user-avatar-mobile {
+            position: relative;
+            z-index: 1051;
+        }
+
+        .user-avatar-mobile img {
+            pointer-events: none;
+        }
+
+        .user-avatar-mobile:focus {
+            outline: 2px solid rgba(255, 255, 255, 0.5);
+            outline-offset: 2px;
+        }
+
+        @media (max-width: 991.98px) {
+            .dropdown.d-lg-none {
+                position: relative;
+                z-index: 1050;
+            }
+
+            .dropdown-menu.dropdown-menu-end {
+                z-index: 1052 !important;
+            }
+        }
+    </style>
 @endpush

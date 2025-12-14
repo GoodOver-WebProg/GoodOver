@@ -47,14 +47,14 @@
                         <div class="d-flex align-items-center justify-content-between">
                             <span class="fw-semibold" style="color: #333;">{{ __('product.quantity') }}:</span>
                             <div class="d-flex align-items-center gap-3">
-                                <button class="btn"
+                                <button id="decreaseBtn" class="btn"
                                     style="background-color: #086D71; color: white; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;"
                                     onclick="decreaseQuantity()">
                                     <i class="bi bi-dash"></i>
                                 </button>
                                 <span id="quantity" class="fw-bold"
                                     style="font-size: 1.2rem; color: #086D71; min-width: 30px; text-align: center;">1</span>
-                                <button class="btn"
+                                <button id="increaseBtn" class="btn"
                                     style="background-color: #086D71; color: white; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;"
                                     onclick="increaseQuantity()">
                                     <i class="bi bi-plus"></i>
@@ -143,10 +143,11 @@
                     {{-- Reserve Button --}}
                     <div class="d-grid">
                         @auth
-                            <button class="btn text-white fw-bold py-3"
+                            <button id="reserveBtn" class="btn text-white fw-bold py-3"
                                 style="background-color: #086D71; border-radius: 12px; font-size: 1.1rem; transition: all 0.3s ease;"
-                                onmouseover="this.style.backgroundColor='#065a5e'; this.style.transform='translateY(-2px)'"
-                                onmouseout="this.style.backgroundColor='#086D71'; this.style.transform='translateY(0)'">
+                                onmouseover="if(!this.disabled) { this.style.backgroundColor='#065a5e'; this.style.transform='translateY(-2px)'; }"
+                                onmouseout="if(!this.disabled) { this.style.backgroundColor='#086D71'; this.style.transform='translateY(0)'; }"
+                                onclick="showReservationSummary()">
                                 <i class="bi bi-cart-plus me-2"></i> {{ __('product.reserve_now') }}
                             </button>
                         @endauth
@@ -159,6 +160,86 @@
                             </a>
                         @endguest
                     </div>
+
+                    {{-- Reservation Summary Section --}}
+                    <div id="reservationSummary" class="mt-4 d-none">
+                        <div class="card border-0 shadow-sm" style="border-radius: 12px; background-color: #f8f9fa;">
+                            <div class="card-header bg-white border-0 py-3" style="border-radius: 12px 12px 0 0;">
+                                <h5 class="mb-0 fw-bold" style="color: #086D71;">
+                                    <i class="bi bi-receipt me-2"></i>{{ __('product.reservation_summary') }}
+                                </h5>
+                            </div>
+                            <div class="card-body p-4">
+                                {{-- Product Info --}}
+                                <div class="mb-3 pb-3 border-bottom">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span class="fw-semibold"
+                                            style="color: #333;">{{ __('product.product_name') }}:</span>
+                                        <span class="fw-bold" style="color: #086D71;"
+                                            id="summaryProductName">{{ $product->name }}</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span class="fw-semibold" style="color: #333;">{{ __('product.price') }}:</span>
+                                        <span class="fw-bold" style="color: #086D71;" id="summaryPrice">Rp
+                                            {{ number_format($product->price ?? 0, 0, ',', '.') }}</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="fw-semibold"
+                                            style="color: #333;">{{ __('product.quantity') }}:</span>
+                                        <span class="fw-bold" style="color: #086D71;" id="summaryQuantity">1</span>
+                                    </div>
+                                </div>
+
+                                {{-- Total Price --}}
+                                <div class="mb-3 pb-3 border-bottom">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="fw-bold"
+                                            style="color: #333; font-size: 1.1rem;">{{ __('product.total_price') }}:</span>
+                                        <span class="fw-bold" style="color: #086D71; font-size: 1.3rem;"
+                                            id="summaryTotalPrice">Rp
+                                            {{ number_format($product->price ?? 0, 0, ',', '.') }}</span>
+                                    </div>
+                                </div>
+
+                                {{-- Payment Method --}}
+                                <div class="mb-4">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="fw-semibold"
+                                            style="color: #333;">{{ __('product.payment_method') }}:</span>
+                                        <span class="badge rounded-pill px-3 py-2"
+                                            style="background-color: #086D71; color: white;">
+                                            <i class="bi bi-shop me-1"></i>{{ __('product.pay_at_restaurant') }}
+                                        </span>
+                                    </div>
+                                </div>
+
+                                {{-- Action Buttons --}}
+                                <div class="d-grid gap-2">
+                                    <button id="confirmReservationBtn" class="btn text-white fw-bold py-3"
+                                        style="background-color: #086D71; border-radius: 12px; font-size: 1.1rem; transition: all 0.3s ease;"
+                                        onmouseover="if(!this.disabled) { this.style.backgroundColor='#065a5e'; this.style.transform='translateY(-2px)'; }"
+                                        onmouseout="if(!this.disabled) { this.style.backgroundColor='#086D71'; this.style.transform='translateY(0)'; }"
+                                        onclick="confirmReservation()">
+                                        <span id="confirmBtnText">
+                                            <i class="bi bi-check-circle me-2"></i>{{ __('product.confirm_reservation') }}
+                                        </span>
+                                        <span id="confirmBtnLoading" class="d-none">
+                                            <span class="spinner-border spinner-border-sm me-2" role="status"
+                                                aria-hidden="true"></span>
+                                            {{ __('product.processing') }}
+                                        </span>
+                                    </button>
+                                    <button id="cancelReservationBtn" class="btn btn-outline-secondary fw-bold py-2"
+                                        style="border-radius: 12px; font-size: 1rem;" onclick="cancelReservation()">
+                                        <i class="bi bi-x-circle me-2"></i>{{ __('product.cancel') }}
+                                    </button>
+                                </div>
+
+                                {{-- Message --}}
+                                <div id="reservationMessage" class="mt-3"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -167,17 +248,181 @@
     @push('scripts')
         <script>
             let quantity = 1;
+            const maxQuantity = {{ $product->total_quantity ?? 1 }};
 
-            function increaseQuantity() {
-                quantity++;
-                document.getElementById('quantity').textContent = quantity;
+            function updateQuantityButtons() {
+                const decreaseBtn = document.getElementById('decreaseBtn');
+                const increaseBtn = document.getElementById('increaseBtn');
+
+                if (quantity <= 1) {
+                    decreaseBtn.disabled = true;
+                    decreaseBtn.style.opacity = '0.5';
+                    decreaseBtn.style.cursor = 'not-allowed';
+                } else {
+                    decreaseBtn.disabled = false;
+                    decreaseBtn.style.opacity = '1';
+                    decreaseBtn.style.cursor = 'pointer';
+                }
+
+                if (quantity >= maxQuantity) {
+                    increaseBtn.disabled = true;
+                    increaseBtn.style.opacity = '0.5';
+                    increaseBtn.style.cursor = 'not-allowed';
+                } else {
+                    increaseBtn.disabled = false;
+                    increaseBtn.style.opacity = '1';
+                    increaseBtn.style.cursor = 'pointer';
+                }
             }
 
             function decreaseQuantity() {
                 if (quantity > 1) {
                     quantity--;
                     document.getElementById('quantity').textContent = quantity;
+                    updateQuantityButtons();
+                    updateReservationSummary();
                 }
+            }
+
+            function increaseQuantity() {
+                if (quantity < maxQuantity) {
+                    quantity++;
+                    document.getElementById('quantity').textContent = quantity;
+                    updateQuantityButtons();
+                    updateReservationSummary();
+                } else {
+                    alert('{{ __('product.max_quantity_reached') }}');
+                }
+            }
+
+            function updateReservationSummary() {
+                const summarySection = document.getElementById('reservationSummary');
+                if (!summarySection.classList.contains('d-none')) {
+                    const productPrice = {{ $product->price ?? 0 }};
+                    const totalPrice = productPrice * quantity;
+                    document.getElementById('summaryQuantity').textContent = quantity;
+                    document.getElementById('summaryTotalPrice').textContent = 'Rp ' + formatNumber(totalPrice);
+                }
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+                updateQuantityButtons();
+            });
+
+            function showReservationSummary() {
+                const summarySection = document.getElementById('reservationSummary');
+                const productPrice = {{ $product->price ?? 0 }};
+                const totalPrice = productPrice * quantity;
+
+                document.getElementById('summaryQuantity').textContent = quantity;
+                document.getElementById('summaryTotalPrice').textContent = 'Rp ' + formatNumber(totalPrice);
+
+                summarySection.classList.remove('d-none');
+
+                setTimeout(() => {
+                    summarySection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }, 100);
+            }
+
+            function formatNumber(num) {
+                return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+            }
+
+            function confirmReservation() {
+                const btn = document.getElementById('confirmReservationBtn');
+                const btnText = document.getElementById('confirmBtnText');
+                const btnLoading = document.getElementById('confirmBtnLoading');
+                const messageDiv = document.getElementById('reservationMessage');
+
+                if (btn.disabled) {
+                    return;
+                }
+
+                btn.disabled = true;
+                btnText.classList.add('d-none');
+                btnLoading.classList.remove('d-none');
+                messageDiv.innerHTML = '';
+
+                const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+                const data = {
+                    product_id: {{ $product->id }},
+                    quantity: quantity
+                };
+
+                fetch('{{ route('order.reserve') }}', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': csrfToken,
+                            'X-Requested-With': 'XMLHttpRequest'
+                        },
+                        body: JSON.stringify(data)
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            messageDiv.innerHTML =
+                                '<div class="alert alert-success alert-dismissible fade show" role="alert">' +
+                                '<i class="bi bi-check-circle me-2"></i>' + data.message +
+                                '<button type="button" class="btn-close" data-bs-dismiss="alert"></button>' +
+                                '</div>';
+
+                            btnLoading.classList.add('d-none');
+                            btnText.classList.remove('d-none');
+                            btnText.innerHTML =
+                                '<i class="bi bi-check-circle me-2"></i>{{ __('product.reservation_confirmed') }}';
+
+                            btn.disabled = true;
+                            btn.style.backgroundColor = '#28a745';
+                            btn.style.cursor = 'not-allowed';
+                            document.getElementById('cancelReservationBtn').disabled = true;
+
+                            setTimeout(() => {
+                                if (data.redirect) {
+                                    window.location.href = data.redirect;
+                                }
+                            }, 2000);
+                        } else {
+                            messageDiv.innerHTML =
+                                '<div class="alert alert-danger alert-dismissible fade show" role="alert">' +
+                                '<i class="bi bi-exclamation-triangle me-2"></i>' + (data.message ||
+                                    '{{ __('product.reserve_failed') }}') +
+                                '<button type="button" class="btn-close" data-bs-dismiss="alert"></button>' +
+                                '</div>';
+                            btn.disabled = false;
+                            btnText.classList.remove('d-none');
+                            btnLoading.classList.add('d-none');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        messageDiv.innerHTML = '<div class="alert alert-danger alert-dismissible fade show" role="alert">' +
+                            '<i class="bi bi-exclamation-triangle me-2"></i>{{ __('product.reserve_failed') }}' +
+                            '<button type="button" class="btn-close" data-bs-dismiss="alert"></button>' +
+                            '</div>';
+                        btn.disabled = false;
+                        btnText.classList.remove('d-none');
+                        btnLoading.classList.add('d-none');
+                    });
+            }
+
+            function cancelReservation() {
+                const summarySection = document.getElementById('reservationSummary');
+                const messageDiv = document.getElementById('reservationMessage');
+                const confirmBtn = document.getElementById('confirmReservationBtn');
+                const confirmBtnText = document.getElementById('confirmBtnText');
+                const confirmBtnLoading = document.getElementById('confirmBtnLoading');
+
+                summarySection.classList.add('d-none');
+                messageDiv.innerHTML = '';
+
+                confirmBtn.disabled = false;
+                confirmBtnText.classList.remove('d-none');
+                confirmBtnLoading.classList.add('d-none');
             }
         </script>
     @endpush
