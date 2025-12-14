@@ -164,15 +164,47 @@ GoodOver provides a marketplace where sellers can list their excess food invento
 
 ## Screenshots
 
-| Page                    | Screenshot                            | Description                                                                                                                                                                                               |
-| ----------------------- | ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Homepage**            | `screenshots/homepage.png`            | Landing page featuring the hero section with "Save Food, Save Money" mission, product search functionality, latest products grid, and "How It Works" section showcasing the platform's value proposition. |
-| **Product Listing**     | `screenshots/product-listing.png`     | Product browsing page with advanced filtering options (location and category), sort functionality, and responsive product card grid displaying available food items.                                      |
-| **Product Detail**      | `screenshots/product-detail.png`      | Individual product page showing comprehensive product information, quantity selector, reservation summary preview, and confirmation interface with order details.                                         |
-| **Reservation Summary** | `screenshots/reservation-summary.png` | Reservation confirmation preview displaying product details, quantity, total price, payment method (Pay at Restaurant), and action buttons for confirming or canceling the reservation.                   |
-| **Order History**       | `screenshots/order-history.png`       | User's order history page with chronological list of orders, status badges (Pending, Finished, Cancelled), order details, and responsive card layout for mobile devices.                                  |
-| **Profile Page**        | `screenshots/profile.png`             | User profile page displaying account information, contact details, and access to order history with clean, modern design.                                                                                 |
-| **Seller Dashboard**    | `screenshots/seller-dashboard.png`    | Seller management interface showing product listings, statistics (total products, active products, sales), and product management controls.                                                               |
+### 1. Homepage
+
+![Homepage](screenshots/homepage.png)
+
+Landing page featuring the hero section with "Save Food, Save Money" mission, product search functionality, latest products grid, and "How It Works" section showcasing the platform's value proposition.
+
+### 2. Product Listing
+
+![Product Listing](screenshots/product-listing.png)
+
+Product browsing page with advanced filtering options (location and category), sort functionality, and responsive product card grid displaying available food items.
+
+### 3. Product Detail
+
+![Product Detail](screenshots/product-detail.png)
+
+Individual product page showing comprehensive product information, quantity selector, reservation summary preview, and confirmation interface with order details.
+
+### 4. Reservation Summary
+
+![Reservation Summary](screenshots/reservation-summary.png)
+
+Reservation confirmation preview displaying product details, quantity, total price, payment method (Pay at Restaurant), and action buttons for confirming or canceling the reservation.
+
+### 5. Order History
+
+![Order History](screenshots/order-history.png)
+
+User's order history page with chronological list of orders, status badges (Pending, Finished, Cancelled), order details, and responsive card layout for mobile devices.
+
+### 6. Profile Page
+
+![Profile Page](screenshots/profile.png)
+
+User profile page displaying account information, contact details, and access to order history with clean, modern design.
+
+### 7. Seller Dashboard
+
+![Seller Dashboard](screenshots/seller-dashboard.png)
+
+Seller management interface showing product listings, statistics (total products, active products, sales), and product management controls.
 
 ## Business Rules
 
