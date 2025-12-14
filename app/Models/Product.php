@@ -13,11 +13,12 @@ class Product extends Model
         'name',
         'price',
         'description',
+        'store_id',
         'image_path',
         'status',
         'total_quantity',
-        'pickup_time',
         'pickup_duration',
+        'category_id',
     ];
 
     public function store()

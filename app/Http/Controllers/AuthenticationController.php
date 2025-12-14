@@ -32,7 +32,7 @@ class AuthenticationController extends Controller {
 
         if (Auth::attempt($validator->validated())) {
             $request->session()->regenerate();
-            return redirect()->route('homepage');
+            return redirect()->route('home');
         }
     }
 
@@ -45,11 +45,11 @@ class AuthenticationController extends Controller {
             ];
 
             $messages = [
-                'required'  => __('auth.registerMessages.required'),
-                'email'     => __('auth.registerMessages.email'),
-                'min'       => __('auth.registerMessages.min'),
-                'alpha_num' => __('auth.registerMessages.alpha_num'),
-                'unique'    => __('auth.registerMessages.unique'),
+                'required'  => __('auth.Messages.required'),
+                'email'     => __('auth.Messages.email'),
+                'min'       => __('auth.Messages.min'),
+                'alpha_num' => __('auth.Messages.alpha_num'),
+                'unique'    => __('auth.Messages.unique'),
             ];
 
             $attributes = [
@@ -80,7 +80,7 @@ class AuthenticationController extends Controller {
 
             if (Auth::attempt($validator->validated())) {
                 $request->session()->regenerate();
-                return redirect()->route('homepage');
+                return redirect()->route('home');
             }
 
         } catch (Exception $error) {
@@ -102,21 +102,21 @@ class AuthenticationController extends Controller {
             ];
 
             $messages = [
-                'required'    => __('auth.registerMessages.required'),
-                'date_format' => __('auth.registerMessages.date_format'),
-                'mimes'       => __('auth.registerMessages.mimes'),
-                'in'          => __('auth.registerMessages.in'),
-                'unique'      => __('auth.registerMessages.unique'),
+                'required'    => __('auth.Messages.required'),
+                'date_format' => __('auth.Messages.date_format'),
+                'mimes'       => __('auth.Messages.mimes'),
+                'in'          => __('auth.Messages.in'),
+                'unique'      => __('auth.Messages.unique'),
             ];
 
             $attributes = [
-                'name'         => __('auth.attributes.name'),
-                'address'      => __('auth.attributes.address'),
-                'contact'      => __('auth.attributes.contact'),
-                'location'     => __('auth.attributes.location'),
+                'name'         => __('auth.attributes.store_name'),
+                'address'      => __('auth.attributes.store_address'),
+                'contact'      => __('auth.attributes.store_contact'),
+                'location'     => __('auth.attributes.store_location'),
                 'opening_time' => __('auth.attributes.opening_time'),
                 'closing_time' => __('auth.attributes.closing_time'),
-                'image_path'   => __('auth.attributes.image_path'),
+                'image_path'   => __('auth.attributes.store_image_path'),
             ];
 
             $validator = Validator::make($request->all(), $rules, $messages, $attributes);
@@ -152,7 +152,7 @@ class AuthenticationController extends Controller {
 
             Auth::user()->syncRoles(['seller']);
 
-            return redirect()->route('homepage');
+            return redirect()->route('home');
         } catch (Exception $error) {
             return $error;
         }
@@ -163,6 +163,6 @@ class AuthenticationController extends Controller {
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('homepage');
+        return redirect()->route('home');
     }
 }
