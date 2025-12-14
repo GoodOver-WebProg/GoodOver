@@ -16,5 +16,6 @@ return [
     'delete_success' => 'Produk berhasil dihapus',
     'delete_fail' => 'Terjadi error ketika menghapus produk, coba lagi nanti',
     'create_success' => 'Produk berhasil ditambahkan',
+
 ];
 

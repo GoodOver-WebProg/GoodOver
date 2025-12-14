@@ -1,6 +1,6 @@
 @extends('layout.master')
 
-@section('title', 'Seller Dashboard')
+@section('title', __('seller_dashboard.title'))
 
 @push('styles')
 <style>
@@ -146,26 +146,26 @@
                         style="width:40px;height:40px;border:1px solid #e5e7eb;">
                         <i class="bi bi-grid"></i>
                     </div>
-                    <div class="fw-bold">Dashboard</div>
+                    <div class="fw-bold">{{ __('sellerDashboard.sidebar.title') }}</div>
                 </div>
 
                 <div class="list-group">
                     <a href="{{ route('seller.dashboard') }}"
                         class="list-group-item list-group-item-action d-flex align-items-center justify-content-between active"
                         style="background:#086D71;border-color:#086D71;">
-                        <span><i class="bi bi-box me-2"></i>Product</span>
+                        <span><i class="bi bi-box me-2"></i>{{ __('sellerDashboard.sidebar.product') }}</span>
                         <i class="bi bi-chevron-right"></i>
                     </a>
 
                     <a href="{{ route('seller.product.add.view') }}"
                         class="list-group-item list-group-item-action d-flex align-items-center justify-content-between">
-                        <span><i class="bi bi-plus-circle status-2 me-2"></i>Add Product</span>
+                        <span><i class="bi bi-plus-circle status-2 me-2"></i>{{ __('sellerDashboard.sidebar.add_product') }}</span>
                         <i class="bi bi-chevron-right"></i>
                     </a>
 
                     <a href=""
                         class="list-group-item list-group-item-action d-flex align-items-center justify-content-between">
-                        <span><i class="bi bi-list-ul status-2 me-2"></i>Order management</span>
+                        <span><i class="bi bi-list-ul status-2 me-2"></i>{{ __('sellerDashboard.sidebar.order_management') }}</span>
                         <i class="bi bi-chevron-right"></i>
                     </a>
                 </div>
@@ -191,7 +191,7 @@
                         <div class="p-3 stat-pill d-flex align-items-center justify-content-start" style="background:#f3fff8;">
                             <i class="bi bi-people-fill fs-1 me-3"></i>
                             <div class="d-flex flex-column">
-                                <div class="text-muted small">Total Product</div>
+                                <div class="text-muted small">{{ __('sellerDashboard.stats.total_product') }}</div>
                                 <div class="fs-3 fw-bold">{{ $totalProduct }}</div>
                             </div>
                         </div>
@@ -200,7 +200,7 @@
                         <div class="p-3 stat-pill d-flex align-items-center justify-content-start" style="background:#f3fff8;">
                             <i class="bi bi-cash-stack fs-1 me-3"></i>
                             <div class="d-flex flex-column">
-                                <div class="text-muted small">Total Sales</div>
+                                <div class="text-muted small">{{ __('sellerDashboard.stats.total_sales') }}</div>
                                 <div class="fs-3 fw-bold">{{ $totalSales }}</div>
                             </div>
                         </div>
@@ -209,7 +209,7 @@
                         <div class="p-3 stat-pill d-flex align-items-center justify-content-start" style="background:#f3fff8;">
                             <i class="bi bi-laptop fs-1 me-3"></i>
                             <div class="d-flex flex-column">
-                                <div class="text-muted small">Active Product</div>
+                                <div class="text-muted small">{{ __('sellerDashboard.stats.active_product') }}</div>
                                 <div class="fs-3 fw-bold">{{ $activeProduct }}</div>
                             </div>
                         </div>
@@ -221,8 +221,8 @@
             <div class="seller-island p-4 shadow-sm">
                 <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-3">
                     <div>
-                        <div class="fw-bold fs-4">All Products</div>
-                        <div class="text-success small">Active Products</div>
+                        <div class="fw-bold fs-4">{{ __('sellerDashboard.table.all_products') }}</div>
+                        <div class="text-success small">{{ __('sellerDashboard.table.active_products') }}</div>
                     </div>
 
                     <div class="d-flex align-items-center gap-2">
@@ -239,7 +239,7 @@
                                     name="q" 
                                     value="{{ request('q') }}" 
                                     class="form-control border-start-0 rounded-end" 
-                                    placeholder="Search">
+                                    placeholder="{{ __('sellerDashboard.table.search') }}">
                             </div>
                         </form>
 
@@ -284,12 +284,12 @@
                     <table class="table align-middle">
                         <thead>
                             <tr>
-                                <th>Product Name</th>
-                                <th>Price</th>
-                                <th>Description</th>
-                                <th>Stock</th>
-                                <th>Status</th>
-                                <th class="text-end">Edit</th>
+                                <th>{{ __('sellerDashboard.table.product_name') }}</th>
+                                <th>{{ __('sellerDashboard.table.price') }}</th>
+                                <th>{{ __('sellerDashboard.table.description') }}</th>
+                                <th>{{ __('sellerDashboard.table.stock') }}</th>
+                                <th>{{ __('sellerDashboard.table.status') }}</th>
+                                <th class="text-end">{{ __('sellerDashboard.table.edit') }}</th>
                             </tr>
                         </thead>
 
@@ -304,9 +304,9 @@
                                 <td>{{ $product->total_quantity }}</td>
                                 <td>
                                     @if ($product->status === 'active')
-                                    <span class="badge bg-success">Active</span>
+                                    <span class="badge bg-success">{{ __('sellerDashboard.table.active_badge') }}</span>
                                     @else
-                                    <span class="badge bg-danger">Inactive</span>
+                                    <span class="badge bg-danger">{{ __('sellerDashboard.table.inactive_badge') }}</span>
                                     @endif
                                 </td>
                                 <td class="text-end">
@@ -318,7 +318,7 @@
                                         <ul class="dropdown-menu dropdown-menu-end">
                                             <li>
                                                 <a class="dropdown-item" href="">
-                                                    Edit
+                                                    {{ __('sellerDashboard.table.edit_action') }}
                                                 </a>
                                             </li>
                                         
@@ -329,7 +329,7 @@
                                                     @method('DELETE')
                                         
                                                     <button type="submit" class="dropdown-item text-danger">
-                                                        Delete
+                                                        {{ __('sellerDashboard.table.delete_action') }}
                                                     </button>
                                                 </form>
                                             </li>
@@ -339,7 +339,7 @@
                             </tr>
                             @empty
                             <tr>
-                                <td colspan="6" class="text-center text-muted py-4">No products found.</td>
+                                <td colspan="6" class="text-center text-muted py-4">{{ __('sellerDashboard.table.no_products') }}</td>
                             </tr>
                             @endforelse
                         </tbody>
