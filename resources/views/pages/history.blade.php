@@ -14,7 +14,7 @@
                 {{ __('history.title') }}
             </h3>
 
-            <div class="d-flex gap-2 w-100 w-md-auto">
+            <div class="d-flex gap-2 w-auto">
                 {{-- Search Bar --}}
                 <div class="input-group flex-grow-1 flex-md-grow-0" style="max-width: 250px;">
                     <span class="input-group-text bg-white border-end-0">
