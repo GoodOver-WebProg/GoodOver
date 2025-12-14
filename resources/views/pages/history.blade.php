@@ -38,8 +38,9 @@
         <div class="card border-0 shadow-sm rounded-4">
             <div class="card-body p-0">
                 <div class="table-responsive">
+                    {{-- kok ada d-none? --}}
                     <table class="table table-hover align-middle mb-0" style="font-size: 0.95rem;">
-                        <thead class="bg-light border-bottom d-none d-md-table-header-group">
+                        <thead class="bg-light border-bottom  d-md-table-header-group">
                             <tr class="text-muted text-uppercase" style="font-size: 0.8rem;">
                                 <th class="py-4 ps-4">{{ __('history.product_name') }}</th>
                                 <th class="py-4">{{ __('history.price') }}</th>

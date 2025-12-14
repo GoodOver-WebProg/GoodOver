@@ -64,7 +64,12 @@ Route::get('/lang/{lang}', function ($lang) {
 })->name('lang.switch');
 
 Route::prefix('/seller')->middleware(['role:seller'])->group(function () { 
-    Route::get('/dashboard',[SellerProductController::class,'dashboard'])->name('seller.dashboard');
+    Route::get('/dashboard',[SellerProductController::class,'dashboard'])->name('seller.dashboard');   
+
+    Route::prefix('/orders')->group(function () {
+        Route::get('/', [SellerProductController::class, 'manageOrder'])->name('seller.manageOrder');
+        Route::put('/update/{id}', [SellerProductController::class, 'updateOrder'])->name('seller.updateOrder');
+    });
 
     Route::get('/view/add', [PageController::class, 'sellerAddProduct'])->name('seller.product.add.view');
     Route::post('/add', [ProductController::class, 'addProduct'])->name('seller.product.add');

@@ -158,7 +158,7 @@
                         <i class="bi bi-chevron-right"></i>
                     </a>
 
-                    <a href=""
+                    <a href="{{ route('seller.manageOrder') }}"
                         class="list-group-item list-group-item-action d-flex align-items-center justify-content-between">
                         <span><i class="bi bi-list-ul status-2 me-2"></i>{{ __('sellerDashboard.sidebar.order_management') }}</span>
                         <i class="bi bi-chevron-right"></i>

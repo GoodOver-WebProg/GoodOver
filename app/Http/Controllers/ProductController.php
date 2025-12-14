@@ -165,7 +165,7 @@ class ProductController extends Controller {
             ->where('store_id', $store->id)
             ->firstOrFail();
         
-        return view('pages.seller.editProduct', compact('store', 'categories', 'product'));
+        return view('pages.seller.editproduct', compact('store', 'categories', 'product'));
     }
     public function editProduct(Request $request, $id) {
         try {

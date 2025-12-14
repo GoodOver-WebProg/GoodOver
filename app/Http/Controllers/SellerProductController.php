@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
 use App\Models\Store;
@@ -50,5 +51,47 @@ class SellerProductController extends Controller {
             'activeProduct',
             'totalSales'
         ));
+    }
+
+    public function manageOrder(Request $request) {
+        $store = Store::where('user_id', Auth::id())->firstOrFail();
+
+        $filter = $request->input('filter', 'pending'); // pending|finished|all
+        $sort   = $request->input('sort', 'oldest');    // oldest|latest
+
+        $query = Order::query()
+            ->where('store_id', $store->id)
+            ->with(['user', 'items.product']); // items = orderItems
+
+        // Filter
+        if ($filter === 'pending') {
+            $query->where('status', 'pending');
+        } elseif ($filter === 'finished') {
+            $query->where('status', 'finished');
+        }
+
+        // Sort
+        $sort === 'latest'
+            ? $query->orderByDesc('created_at')
+            // oldest default
+            : $query->orderBy('created_at');
+
+        $orders = $query->paginate(12)->withQueryString();
+
+        return view('pages.seller.manageorder', compact('store', 'orders', 'filter', 'sort'));
+    }
+
+    public function updateOrder($id) {
+        $store = Store::where('user_id', Auth::id())->firstOrFail();
+
+        $order = Order::where('store_id', $store->id)->findOrFail($id);
+
+        if ($order->status !== 'pending') {
+            return back()->with('error', __('sellerOrder.pending_order_error'));
+        }
+
+        $order->update(['status' => 'finished']);
+
+        return back()->with('success', __('sellerOrder.finish_update_order'));
     }
 }
