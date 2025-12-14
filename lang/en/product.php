@@ -16,5 +16,7 @@ return [
     'delete_success' => 'Product have been successfully deleted',
     'delete_fail' => 'Error occured when deleting, please try again later',
     'create_success' => 'Product was added successfully',
+    'update_success' => 'Product was updated successfully',
+    'update_fail' => 'Error occured when updating, please try again later',
 ];
 

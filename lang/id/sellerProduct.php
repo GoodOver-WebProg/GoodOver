@@ -1,6 +1,7 @@
 <?php
 return[
-    'title' => 'Tambah Produk',
+    'title_add' => 'Tambah Produk',
+    'title_edit' => 'Rubah Informasi Produk',
     'name_label' => 'Masukkan Nama Makanan',
     'price_label' => 'Masukkan Harga Makanan',
     'description_label' => 'Masukkan Deskripsi Makanan',

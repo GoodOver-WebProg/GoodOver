@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use App\Models\Store;
 use Exception;
@@ -152,6 +153,96 @@ class ProductController extends Controller {
             ]);
 
             return redirect()->route('seller.dashboard')->with('success', __('product.create_success'));
+        } catch (Exception $error) {
+            return $error;
+        }
+    }
+
+    public function getProductById($id) {
+        $store = Store::where('user_id', Auth::id())->firstOrFail();
+        $categories = Category::orderBy('category_name')->get();
+
+        $product = Product::where('id', $id)
+            ->where('store_id', $store->id)
+            ->firstOrFail();
+        
+        return view('pages.seller.editProduct', compact('store', 'categories', 'product'));
+    }
+    public function editProduct(Request $request, $id) {
+        try {
+            $rules = [
+                'image_path' => 'nullable|file|mimes:jpg,jpeg,png|max:2048',
+                'name' => 'required|string|max:255',
+                'price' => 'required|integer|min:0',
+                'description' => 'required|string',
+                'status' => 'required|in:active,inactive',
+                'total_quantity' => 'required|integer|min:0',
+                'category_id' => 'required|exists:categories,id',
+                'pickup_duration' => 'required|integer|min:1',
+            ];
+
+            $messages = [
+                'required' => __('auth.Messages.required'),
+                'mimes'    => __('auth.Messages.mimes'),
+                'in'       => __('auth.Messages.in'),
+                'max'      => __('auth.Messages.max'),
+                'min'      => __('auth.Messages.min'),
+                'integer'  => __('auth.Messages.integer'),
+            ];
+
+            $attributes = [
+                'image_path'      => __('auth.attributes.product_image_path'),
+                'name'            => __('auth.attributes.product_name'),
+                'price'           => __('auth.attributes.product_price'),
+                'description'     => __('auth.attributes.product_description'),
+                'status'          => __('auth.attributes.product_status'),
+                'total_quantity'  => __('auth.attributes.product_total_quantity'),
+                'category_id'     => __('auth.attributes.product_category'),
+                'pickup_duration' => __('auth.attributes.pickup_duration'),
+            ];
+
+            $validator = Validator::make($request->all(), $rules, $messages, $attributes);
+
+            if ($validator->fails()) {
+                return redirect()->back()
+                    ->withErrors($validator)
+                    ->withInput();
+            }
+
+            $validated = $validator->validated();
+
+            $store = Store::where('user_id', Auth::id())->firstOrFail();
+
+            $product = Product::where('id', $id)
+                ->where('store_id', $store->id)
+                ->firstOrFail();
+
+            if ($request->hasFile('image_path')) {
+                $file = $request->file('image_path');
+
+                $dir = public_path('images/products');
+                if (!is_dir($dir)) {
+                    mkdir($dir, 0755, true);
+                }
+
+                $filename = time() . '_' . preg_replace('/\s+/', '_', $file->getClientOriginalName());
+                $file->move($dir, $filename);
+                $relativePath = 'images/products/' . $filename;
+
+                $product->image_path = $relativePath;
+            }
+
+            $product->name = $validated['name'];
+            $product->price = $validated['price'];
+            $product->description = $validated['description'];
+            $product->status = $validated['status'];
+            $product->total_quantity = $validated['total_quantity'];
+            $product->category_id = $validated['category_id'];
+            $product->pickup_duration = $validated['pickup_duration'];
+
+            $product->save();
+
+            return redirect()->route('seller.dashboard')->with('success', __('product.update_success'));
         } catch (Exception $error) {
             return $error;
         }

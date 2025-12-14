@@ -317,7 +317,7 @@
                                         </button>
                                         <ul class="dropdown-menu dropdown-menu-end">
                                             <li>
-                                                <a class="dropdown-item" href="">
+                                                <a class="dropdown-item" href="{{ route('seller.product.edit.view', $product->id) }}">
                                                     {{ __('sellerDashboard.table.edit_action') }}
                                                 </a>
                                             </li>

@@ -63,8 +63,7 @@ Route::prefix('/seller')->middleware(['role:seller'])->group(function () {
 
     Route::get('/view/add', [PageController::class, 'sellerAddProduct'])->name('seller.product.add.view');
     Route::post('/add', [ProductController::class, 'addProduct'])->name('seller.product.add');
-
+    Route::get('/view/edit/{id}', [ProductController::class, 'getProductById'])->name('seller.product.edit.view');
+    Route::put('/edit/{id}', [ProductController::class, 'editProduct'])->name('seller.product.edit');
     Route::delete('/delete/{id}', [ProductController::class, 'deleteProduct'])->name('seller.product.delete');
-    
-    
 });
