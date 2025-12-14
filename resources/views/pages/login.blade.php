@@ -23,7 +23,6 @@
     </div>
 
     <style>
-        /* Back to GoodOver Button Responsive */
         @media (max-width: 767.98px) {
             .back-to-goodover-btn {
                 margin: 0.75rem !important;

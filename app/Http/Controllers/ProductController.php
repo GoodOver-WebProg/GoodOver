@@ -128,7 +128,6 @@ class ProductController extends Controller {
 
             $store = Store::where('user_id', Auth::id())->firstOrFail();
 
-            // upload to public/images/products
             $file = $request->file('image_path');
             $dir = public_path('images/products');
             if (!is_dir($dir)) {
