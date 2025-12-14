@@ -37,14 +37,14 @@
                     style="color: #ffffff; font-size: 0.9rem; letter-spacing: 1px;">Menu</h5>
                 <ul class="list-unstyled">
                     <li class="mb-2">
-                        <a href="{{ route('homepage') }}" class="text-secondary text-decoration-none"
+                        <a href="{{ route('home') }}" class="text-secondary text-decoration-none"
                             style="transition: color 0.3s ease;" onmouseover="this.style.color='#ffffff'"
                             onmouseout="this.style.color='#6c757d'">
                             Home
                         </a>
                     </li>
                     <li class="mb-2">
-                        <a href="{{ route('homepage') }}#foods" class="text-secondary text-decoration-none"
+                        <a href="{{ route('home') }}#foods" class="text-secondary text-decoration-none"
                             style="transition: color 0.3s ease;" onmouseover="this.style.color='#ffffff'"
                             onmouseout="this.style.color='#6c757d'">
                             Foods

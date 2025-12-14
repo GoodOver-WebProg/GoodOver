@@ -171,21 +171,13 @@
                                 <ul class="dropdown-menu dropdown-menu-end"
                                     style="border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
                                     <li>
-                                        <a href="#" class="dropdown-item">
-                                            <i class="bi bi-person me-2"></i>Profile
-                                        </a>
+                                        <a href="{{ route('route.profile.view', Auth::user()->id)}}" class="dropdown-item">Profile</a>
                                     </li>
-
-                                    {{-- This is the stash version you want --}}
                                     @role('seller')
-                                        <li>
-                                            <a href="{{ route('seller.dashboard') }}" class="dropdown-item">
-                                                <i class="bi bi-shop me-2"></i>Seller Dashboard
-                                            </a>
-                                        </li>
+                                    <li>
+                                        <a href="{{ route('seller.dashboard') }}" class="dropdown-item">Seller Dashboard</a>
+                                    </li>
                                     @endrole
-
-                                    <li><hr class="dropdown-divider"></li>
                                     <li>
                                         <form method="POST" action="{{ route('route.logout') }}">
                                             @csrf
@@ -194,6 +186,7 @@
                                             </button>
                                         </form>
                                     </li>
+
                                 </ul>
                             </div>
                         </li>

@@ -20,13 +20,12 @@ Route::prefix('/register')->group(function () {
         ->name('register.seller')
         ->middleware(['role:user']);
 
-    Route::prefix('/view')->group(function(){
+    Route::prefix('/view')->group(function () {
         Route::get('/', [PageController::class, 'userRegister'])->name('register.user.view');
         Route::get('/seller', [PageController::class, 'sellerRegister'])
             ->name('register.seller.view')
             ->middleware(['role:user']);
     });
-    
 });
 
 Route::prefix('/login')->group(function () {
@@ -46,8 +45,10 @@ Route::get('/list', [PageController::class, 'listPage'])->name('route.list');
 Route::prefix('/product')->group(function () {
     Route::get('/', [ProductController::class, 'getProduct'])->name('route.product');
 });
-Route::get('/profile', [ProfileController::class, 'showProfile'])
-    ->name('route.profile.view');
+Route::prefix('/profile')->group(function () {
+    Route::get('/{id}', [ProfileController::class, 'showProfile'])->name('route.profile.view');
+    Route::get('/history/{id}', [ProfileController::class, 'showHistory'])->name('route.profile.history');
+});
 
 Route::get('/lang/{lang}', function ($lang) {
     if (in_array($lang, ['en', 'id'])) {
@@ -56,9 +57,14 @@ Route::get('/lang/{lang}', function ($lang) {
     }
     return redirect()->back();
 })->name('lang.switch');
+
 Route::prefix('/seller')->middleware(['role:seller'])->group(function () { 
-    Route::get('/dashboard',[SellerProductController::class,'dashboard']);
-    // Route::post('/add');
-    // Route::post('/edit/{id}');
-    // Route::delete('/delete/{id}');
+    Route::get('/dashboard',[SellerProductController::class,'dashboard'])->name('seller.dashboard');
+
+    Route::get('/view/add', [PageController::class, 'sellerAddProduct'])->name('seller.product.add.view');
+    Route::post('/add', [ProductController::class, 'addProduct'])->name('seller.product.add');
+
+    Route::delete('/delete/{id}', [ProductController::class, 'deleteProduct'])->name('seller.product.delete');
+    
+    
 });
