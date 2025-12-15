@@ -55,6 +55,8 @@ Route::prefix('/order')->middleware(['auth'])->group(function () {
 Route::prefix('/profile')->group(function () {
     Route::get('/{id}', [ProfileController::class, 'showProfile'])->name('route.profile.view');
     Route::get('/history/{id}', [ProfileController::class, 'showHistory'])->name('route.profile.history');
+    Route::get('/edit/{id}', [ProfileController::class, 'editProfile'])->name('route.profile.edit');
+    Route::put('/update/{id}', [ProfileController::class, 'updateProfile'])->name('route.profile.update');
 });
 
 Route::get('/lang/{lang}', function ($lang) {
@@ -66,8 +68,8 @@ Route::get('/lang/{lang}', function ($lang) {
 })->name('lang.switch');
 
 
-Route::prefix('/seller')->middleware(['role:seller'])->group(function () { 
-    Route::get('/dashboard',[SellerProductController::class,'dashboard'])->name('seller.dashboard');   
+Route::prefix('/seller')->middleware(['role:seller'])->group(function () {
+    Route::get('/dashboard',[SellerProductController::class,'dashboard'])->name('seller.dashboard');
 
     Route::prefix('/orders')->group(function () {
         Route::get('/', [SellerProductController::class, 'manageOrder'])->name('seller.manageOrder');

@@ -9,10 +9,13 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
+
     public function showProfile($id)
     {
-        $user = User::findOrFail($id);
-        return view('pages.profile', compact('user'));
+        $user = User::with('orders')->findOrFail($id);
+        $orders = Order::with('items.product')->where('user_id', $id)->latest()->paginate(5);
+        $totalOrders = Order::with('items.product')->where('user_id', $id)->count();
+        return view('pages.profile', compact('user', 'orders', 'totalOrders'));
     }
 
     public function showHistory($id)
@@ -22,4 +25,5 @@ class ProfileController extends Controller
 
         return view('pages.history', compact('user', 'orders'));
     }
+
 }

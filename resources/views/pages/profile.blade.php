@@ -12,8 +12,7 @@
                 <div class="profile-meta">
                     <h2>{{ $user->username }}</h2>
                     <div class="sub">
-                        <div><i class="bi bi-geo-alt"></i> Saint Santos, Jakarta</div>
-                        <div><i class="bi bi-facebook"></i> leb_sunshine</div>
+                        <div>Created since {{$user->created_at->format('M d, Y')}}</div>
                     </div>
                 </div>
 
@@ -28,8 +27,7 @@
                 <div class="row">
                     <div class="col-md-6 contact-list">
                         <div class="contact-item">
-                            <i class="bi bi-telephone"></i>
-                            <div>+62 813 3856 1122</div>
+                            <h4>Total order: {{ $totalOrders }}</h4>
                         </div>
 
                         <div class="contact-item">
@@ -39,8 +37,157 @@
 
                         <a href="{{ route('route.profile.history', $user->id) }}" class="btn-history">{{ __('profile.history') }}</a>
                     </div>
+
+                    <div class="col-md-6">
+                        <h4>Recent Orders</h4>
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle mb-0" style="font-size: 0.95rem;">
+                                <thead class="bg-light border-bottom">
+                                    <tr class="text-muted text-uppercase d-none d-md-table-row" style="font-size: 0.8rem;">
+                                        <th class="py-4 ps-4">{{ __('history.product_name') }}</th>
+                                        <th class="py-4">{{ __('history.price') }}</th>
+                                        <th class="py-4">{{ __('history.total_quantity') }}</th>
+                                        <th class="py-4">{{ __('history.date') }}</th>
+                                        <th class="py-4">{{ __('history.order_time') }}</th>
+                                        <th class="py-4 text-end pe-4">{{ __('history.status') }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @forelse($orders as $order)
+                                        @php $firstItem = $order->items->first(); @endphp
+
+                                        {{-- Desktop View --}}
+                                        <tr class="d-none d-md-table-row clickable-row" role="button" tabindex="0" data-href="{{ route('order.status', $order->id) }}">
+                                            <td class="ps-4 py-3 fw-medium">
+                                                {{ $firstItem ? $firstItem->product->name : __('history.item_deleted') }}
+                                            </td>
+                                            <td class="py-3">
+                                                Rp{{ number_format($firstItem ? $firstItem->unit_price : 0, 0, ',', '.') }}
+                                            </td>
+                                            <td class="py-3 text-muted">
+                                                {{ $firstItem ? $firstItem->quantity : 0 }} {{ __('history.pcs') }}
+                                            </td>
+                                            <td class="py-3 text-muted">
+                                                {{ $order->created_at->format('d F Y') }}
+                                            </td>
+                                            <td class="py-3 text-muted">
+                                                {{ $order->created_at->format('H.i') }}
+                                            </td>
+                                            <td class="py-3 text-end pe-4">
+                                                @php
+                                                    $status = strtolower($order->status ?? 'pending');
+                                                    $badgeClass = 'badge ';
+
+                                                    switch($status) {
+                                                        case 'pending':
+                                                            $badgeClass .= 'bg-warning text-dark';
+                                                            $badgeText = __('history.pending');
+                                                            break;
+                                                        case 'finished':
+                                                            $badgeClass .= 'bg-success';
+                                                            $badgeText = __('history.finished');
+                                                            break;
+                                                        case 'completed':
+                                                            $badgeClass .= 'bg-success';
+                                                            $badgeText = __('history.completed');
+                                                            break;
+                                                        case 'cancelled':
+                                                            $badgeClass .= 'bg-danger';
+                                                            $badgeText = __('history.cancelled');
+                                                            break;
+                                                        case 'canceled':
+                                                            $badgeClass .= 'bg-danger';
+                                                            $badgeText = __('history.canceled');
+                                                            break;
+                                                        default:
+                                                            $badgeClass .= 'bg-secondary';
+                                                            $badgeText = ucfirst($status);
+                                                    }
+                                                @endphp
+                                                <span class="badge {{ $badgeClass }} px-3 py-2">
+                                                    {{ $badgeText }}
+                                                </span>
+                                            </td>
+                                        </tr>
+
+                                        {{-- Mobile View --}}
+                                        <tr class="d-md-none clickable-row" role="button" tabindex="0" data-href="{{ route('order.status', $order->id) }}">
+                                            <td class="p-3">
+                                                <div class="d-flex flex-column gap-2">
+                                                    <div class="d-flex justify-content-between align-items-start">
+                                                        <div class="flex-grow-1">
+                                                            <div class="fw-bold mb-1" style="font-size: 0.95rem;">
+                                                                {{ $firstItem ? $firstItem->product->name : __('history.item_deleted') }}
+                                                            </div>
+                                                            <div class="text-muted small">
+                                                                {{ $order->created_at->format('d F Y') }} • {{ $order->created_at->format('H.i') }}
+                                                            </div>
+                                                        </div>
+                                                        <div>
+                                                            @php
+                                                                $status = strtolower($order->status ?? 'pending');
+                                                                $badgeClass = 'badge ';
+
+                                                                switch($status) {
+                                                                    case 'pending':
+                                                                        $badgeClass .= 'bg-warning text-dark';
+                                                                        $badgeText = __('history.pending');
+                                                                        break;
+                                                                    case 'finished':
+                                                                        $badgeClass .= 'bg-success';
+                                                                        $badgeText = __('history.finished');
+                                                                        break;
+                                                                    case 'completed':
+                                                                        $badgeClass .= 'bg-success';
+                                                                        $badgeText = __('history.completed');
+                                                                        break;
+                                                                    case 'cancelled':
+                                                                        $badgeClass .= 'bg-danger';
+                                                                        $badgeText = __('history.cancelled');
+                                                                        break;
+                                                                    case 'canceled':
+                                                                        $badgeClass .= 'bg-danger';
+                                                                        $badgeText = __('history.canceled');
+                                                                        break;
+                                                                    default:
+                                                                        $badgeClass .= 'bg-secondary';
+                                                                        $badgeText = ucfirst($status);
+                                                                }
+                                                            @endphp
+                                                            <span class="badge {{ $badgeClass }} px-2 py-1" style="font-size: 0.75rem;">
+                                                                {{ $badgeText }}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex justify-content-between align-items-center pt-2 border-top">
+                                                        <div>
+                                                            <span class="text-muted small">{{ __('history.price') }}:</span>
+                                                            <span class="fw-semibold ms-1">Rp{{ number_format($firstItem ? $firstItem->unit_price : 0, 0, ',', '.') }}</span>
+                                                        </div>
+                                                        <div>
+                                                            <span class="text-muted small">{{ __('history.total_quantity') }}:</span>
+                                                            <span class="fw-semibold ms-1">{{ $firstItem ? $firstItem->quantity : 0 }} {{ __('history.pcs') }}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="6" class="text-center py-5 text-muted">
+                                                <i class="bi bi-inbox fs-1 d-block mb-2"></i>
+                                                {{ __('history.no_history') }}
+                                            </td>
+                                        </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
+
             </div>
+
         </div>
     @endsection
     @push('styles')
@@ -156,6 +303,10 @@
                 font-weight: 700;
                 margin-top: 18px;
                 text-decoration: none;
+            }
+
+            .btn-history:hover {
+                color: #fff;
             }
 
             .hero-cover {
