@@ -24,7 +24,7 @@
 
     .sort-dropdown-container {
         position: relative;
-        z-index: 1000;
+        /* z-index: 1000; */
     }
 
     .sort-dropdown-container .dropdown {
@@ -32,7 +32,7 @@
     }
 
     .sort-dropdown-container .dropdown-menu {
-        z-index: 1000;
+        /* z-index: 1000; */
         border: none;
         box-shadow: 0 4px 12px rgba(8, 109, 113, .15);
         border-radius: 12px;
