@@ -11,6 +11,7 @@ return [
     'filter' => [
         'finished_only' => 'Hanya Pesanan Selesai',
         'pending_only' => 'Hanya Pesanan Pending',
+        'cancelled_only' => 'Hanya Pesanan yang Dibatalkan',
         'all' => 'Semua Pesanan (Riwayat)',
     ],
 
@@ -33,6 +34,7 @@ return [
 
     'status' => [
         'finished' => 'Selesai',
+        'cancelled' => 'DiBatalkan',
     ],
 
     'action' => [

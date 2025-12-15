@@ -2,7 +2,7 @@
 
 @section('sellerContent')
 @php
-$filter = request('filter', 'pending'); // pending|finished|all
+$filter = request('filter', 'pending'); // pending|finished|cancelled|all
 $sort = request('sort', 'oldest'); // oldest|latest
 @endphp
 
@@ -30,6 +30,8 @@ $sort = request('sort', 'oldest'); // oldest|latest
                                 {{ __('sellerOrder.filter.finished_only') }}
                                 @elseif($filter === 'pending')
                                 {{ __('sellerOrder.filter.pending_only') }}
+                                @elseif($filter === 'cancelled')
+                                {{ __('sellerOrder.filter.cancelled_only') }}
                                 @else
                                 {{ __('sellerOrder.filter.all') }}
                                 @endif
@@ -46,6 +48,11 @@ $sort = request('sort', 'oldest'); // oldest|latest
                                     <button class="dropdown-item" type="submit" name="filter" value="pending">
                                         <i class="bi bi-hourglass-split me-2"></i>{{
                                         __('sellerOrder.filter.pending_only') }}
+                                    </button>
+                                </li>
+                                <li>
+                                    <button class="dropdown-item" type="submit" name="filter" value="cancelled">
+                                        <i class="bi bi-x-circle me-2"></i>{{ __('sellerOrder.filter.cancelled_only') }}
                                     </button>
                                 </li>
                                 <li>
@@ -120,8 +127,7 @@ $sort = request('sort', 'oldest'); // oldest|latest
 
                     $modalId = 'finishModal-' . $order->id;
 
-                    // Requirement: when filter=finished, disable the button (even if status is finished anyway)
-                    $finishDisabledBecauseFilter = ($filter === 'finished');
+                    $finishDisabledBecauseFilter = in_array($filter, ['finished', 'cancelled'], true);
                     @endphp
 
                     <tr>
@@ -136,11 +142,11 @@ $sort = request('sort', 'oldest'); // oldest|latest
                         <td class="text-end">
                             @if($order->status === 'finished')
                             <span class="badge bg-success">{{ __('sellerOrder.status.finished') }}</span>
+                            @elseif($order->status === 'cancelled')
+                            <span class="badge bg-danger">{{ __('sellerOrder.status.cancelled') }}</span>
                             @else
-                            <button type="button" class="btn btn-sm text-white"
-                                style="background:#086D71;border:none;border-radius:10px;"
-                                @if($finishDisabledBecauseFilter) disabled @else data-bs-toggle="modal"
-                                data-bs-target="#{{ $modalId }}" @endif>
+                            <button type="button" class="btn btn-sm text-white" style="background:#086D71;border:none;border-radius:10px;"
+                                @if($finishDisabledBecauseFilter) disabled @else data-bs-toggle="modal" data-bs-target="#{{ $modalId }}" @endif>
                                 {{ __('sellerOrder.action.finish_order') }}
                             </button>
 

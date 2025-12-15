@@ -81,6 +81,5 @@ Route::prefix('/seller')->middleware(['role:seller'])->group(function () {
     Route::delete('/delete/{id}', [ProductController::class, 'deleteProduct'])->name('seller.product.delete');
 
     Route::get('/view/profile/edit', [StoreController::class, 'getProfileBySeller'])->name('seller.profile.edit.view');
-
     Route::put('/profile/edit', [StoreController::class, 'updateProfileBySeller'])->name('seller.profile.edit');
 });

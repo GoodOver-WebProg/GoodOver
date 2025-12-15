@@ -11,6 +11,7 @@ return [
     'filter' => [
         'finished_only' => 'Finished Order Only',
         'pending_only' => 'Pending Order Only',
+        'cancelled_only' => 'cancelled only',
         'all' => 'All Order (History)',
     ],
 
@@ -33,6 +34,7 @@ return [
 
     'status' => [
         'finished' => 'Finished',
+        'cancelled' => 'cancelled',
     ],
 
     'action' => [

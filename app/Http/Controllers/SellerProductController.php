@@ -57,24 +57,45 @@ class SellerProductController extends Controller {
     public function manageOrder(Request $request) {
         $store = Store::where('user_id', Auth::id())->firstOrFail();
 
-        $filter = $request->input('filter', 'pending'); // pending|finished|all
+        $pendingOrders = Order::where('store_id', $store->id)
+            ->where('status', 'pending')
+            ->with(['items.product']) 
+            ->get();
+
+        foreach ($pendingOrders as $order) {
+            $item = $order->items->first();
+            $product = $item?->product;
+
+            if (!$order->created_at || !$product) {
+                continue;
+            }
+
+            $deadline = $order->created_at->copy()->addMinutes((int) $product->pickup_duration);
+
+            if (now()->greaterThan($deadline)) {
+                $order->update(['status' => 'cancelled']);
+            }
+        }
+
+        $filter = $request->input('filter', 'pending'); // pending|finished|cancelled|all
         $sort   = $request->input('sort', 'oldest');    // oldest|latest
 
         $query = Order::query()
             ->where('store_id', $store->id)
-            ->with(['user', 'items.product']); // items = orderItems
+            ->with(['user', 'items.product']);
 
         // Filter
         if ($filter === 'pending') {
             $query->where('status', 'pending');
         } elseif ($filter === 'finished') {
             $query->where('status', 'finished');
+        } elseif ($filter === 'cancelled') {
+            $query->where('status', 'cancelled');
         }
 
         // Sort
         $sort === 'latest'
             ? $query->orderByDesc('created_at')
-            // oldest default
             : $query->orderBy('created_at');
 
         $orders = $query->paginate(12)->withQueryString();

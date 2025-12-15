@@ -110,6 +110,7 @@ class OrderController extends Controller
           'message' => __('product.reserve_success', ['order_number' => $orderNumber]),
           'order_number' => $orderNumber,
           'order_id' => $order->id,
+          'redirect' => route('order.status', $order->id),
         ], 200);
       });
     } catch (\Exception $e) {
