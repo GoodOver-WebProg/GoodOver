@@ -9,6 +9,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller {
     public function getProduct(Request $request) {
@@ -70,15 +71,18 @@ class ProductController extends Controller {
         return view('pages.detailpage', compact('product'));
     }
 
-    public function deleteProduct($id){
-
+    public function deleteProduct($id) {
         $product = Product::findOrFail($id);
 
-        if (!$product) {
-            return redirect()->route('seller.dashboard')->with('error', __('product.delete_fail'));
+        if ($product->image_path) {
+            $fullPath = public_path($product->image_path);
+            if (File::exists($fullPath)) {
+                File::delete($fullPath);
+            }
         }
 
         $product->delete();
+
         return redirect()->route('seller.dashboard')->with('success', __('product.delete_success'));
     }
 
@@ -165,7 +169,7 @@ class ProductController extends Controller {
             ->where('store_id', $store->id)
             ->firstOrFail();
         
-        return view('pages.seller.editproduct', compact('store', 'categories', 'product'));
+        return view('pages.seller.editProduct', compact('store', 'categories', 'product'));
     }
     public function editProduct(Request $request, $id) {
         try {
