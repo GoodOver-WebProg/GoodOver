@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SellerProductController;
+use App\Http\Controllers\StoreController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
@@ -76,4 +77,8 @@ Route::prefix('/seller')->middleware(['role:seller'])->group(function () {
     Route::get('/view/edit/{id}', [ProductController::class, 'getProductById'])->name('seller.product.edit.view');
     Route::put('/edit/{id}', [ProductController::class, 'editProduct'])->name('seller.product.edit');
     Route::delete('/delete/{id}', [ProductController::class, 'deleteProduct'])->name('seller.product.delete');
+
+    Route::get('/view/profile/edit', [StoreController::class, 'getProfileBySeller'])->name('seller.profile.edit.view');
+
+    Route::put('/profile/edit', [StoreController::class, 'updateProfileBySeller'])->name('seller.profile.edit');
 });

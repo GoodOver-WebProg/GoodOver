@@ -211,6 +211,21 @@
                         <span><i class="bi bi-list-ul me-2"></i>Order management</span>
                         <i class="bi bi-chevron-right"></i>
                     </a>
+
+                    <a  href="{{ route('seller.profile.edit.view') }}" 
+                        @class([ 
+                            'list-group-item',
+                            'list-group-item-action',
+                            'd-flex','align-items-center',
+                            'justify-content-between', 
+                            'active'=> request()->routeIs('seller.profile.edit.view'),
+                        ])
+                        @style([
+                            'background:#086D71;border-color:#086D71;' => request()->routeIs('seller.profile.edit.view'),
+                        ])>
+                        <span><i class="bi bi-person-circle me-2"></i>{{ __('sellerStoreProfile.title') }}</span>
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
                 </div>
 
                 <div class="mt-4 pt-4 border-top d-flex align-items-center gap-2">
@@ -219,12 +234,13 @@
                     <div>
                         <div class="fw-semibold">{{ $store->name ?? 'Store' }}</div>
                         <div class="text-muted small">{{ Auth::user()->username ?? 'Seller' }}</div>
+                        
                     </div>
                 </div>
             </div>
         </div>
 
-        @yield('sellerContent');
+        @yield('sellerContent')
     </div>
 </div>
 @endsection
