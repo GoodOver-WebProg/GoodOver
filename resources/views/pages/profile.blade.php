@@ -6,7 +6,7 @@
         <div class="container">
             <div class="profile-bar mt-n5">
                 <div class="avatar">
-                    <img src="{{ asset('profile.jpeg') }}" alt="Avatar">
+                    <img src="{{ asset('profile.png') }}" alt="Avatar">
                 </div>
 
                 <div class="profile-meta">
@@ -17,7 +17,9 @@
                 </div>
 
                 <div class="profile-actions">
-                    <button class="dots-btn" aria-label="more"><i class="bi bi-three-dots"></i></button>
+                    <a href="{{ route('route.profile.edit', $user->id) }}" class="dots-btn" aria-label="Edit Profile">
+                        <i class="bi bi-three-dots"></i>
+                    </a>
                 </div>
             </div>
         </div>

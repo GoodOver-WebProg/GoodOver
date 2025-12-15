@@ -6,6 +6,8 @@ use App\Models\User;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -16,6 +18,54 @@ class ProfileController extends Controller
         $orders = Order::with('items.product')->where('user_id', $id)->latest()->paginate(5);
         $totalOrders = Order::with('items.product')->where('user_id', $id)->count();
         return view('pages.profile', compact('user', 'orders', 'totalOrders'));
+    }
+
+    public function editProfile($id) {
+        $user = User::findOrFail($id);
+        return view('pages.editProfile', compact('user'));
+    }
+
+    public function updateProfile(Request $request, $id) {
+        try {
+            $user = User::findOrFail($id);
+
+            $rules = [
+                'email'    => 'required|email|unique:users,email,' . $user->id,
+                'username' => 'required|unique:users,username,' . $user->id,
+                'password' => 'nullable|min:5|alpha_num|confirmed'
+            ];
+
+            $messages = [
+                'required'  => 'Atribut ini wajib diisi',
+                'email'     => 'Format email tidak valid',
+                'unique'    => 'Data ini sudah digunakan oleh pengguna lain',
+                'min'       => 'Minimal :min karakter',
+                'alpha_num' => 'Hanya boleh huruf dan angka',
+                'confirmed' => 'Konfirmasi password tidak cocok',
+            ];
+
+            $validator = Validator::make($request->all(), $rules, $messages);
+
+            if ($validator->fails()) {
+                return redirect()->back()
+                    ->withErrors($validator)
+                    ->withInput();
+            }
+
+            $user->username = $request->username;
+            $user->email = $request->email;
+
+            if ($request->filled('password')) {
+                $user->password = Hash::make($request->password);
+            }
+
+            $user->save();
+
+            return redirect()->back()->with('success', 'Profil updated!');
+
+        } catch (Exception $error) {
+            return redirect()->back()->with('error', 'Error message: ' . $error->getMessage());
+        }
     }
 
     public function showHistory($id)
