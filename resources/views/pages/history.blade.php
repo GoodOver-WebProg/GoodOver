@@ -38,10 +38,9 @@
         <div class="card border-0 shadow-sm rounded-4">
             <div class="card-body p-0">
                 <div class="table-responsive">
-                    {{-- kok ada d-none? --}}
                     <table class="table table-hover align-middle mb-0" style="font-size: 0.95rem;">
-                        <thead class="bg-light border-bottom  d-md-table-header-group">
-                            <tr class="text-muted text-uppercase" style="font-size: 0.8rem;">
+                        <thead class="bg-light border-bottom">
+                            <tr class="text-muted text-uppercase d-none d-md-table-row" style="font-size: 0.8rem;">
                                 <th class="py-4 ps-4">{{ __('history.product_name') }}</th>
                                 <th class="py-4">{{ __('history.price') }}</th>
                                 <th class="py-4">{{ __('history.total_quantity') }}</th>
@@ -55,7 +54,7 @@
                                 @php $firstItem = $order->items->first(); @endphp
                                 
                                 {{-- Desktop View --}}
-                                <tr class="d-none d-md-table-row">
+                                <tr class="d-none d-md-table-row clickable-row" role="button" tabindex="0" data-href="{{ route('order.status', $order->id) }}">
                                     <td class="ps-4 py-3 fw-medium">
                                         {{ $firstItem ? $firstItem->product->name : __('history.item_deleted') }}
                                     </td>
@@ -109,7 +108,7 @@
                                 </tr>
 
                                 {{-- Mobile View --}}
-                                <tr class="d-md-none">
+                                <tr class="d-md-none clickable-row" role="button" tabindex="0" data-href="{{ route('order.status', $order->id) }}">
                                     <td class="p-3">
                                         <div class="d-flex flex-column gap-2">
                                             <div class="d-flex justify-content-between align-items-start">
@@ -198,6 +197,7 @@
 
 @push('styles')
     <style>
+        .clickable-row { cursor: pointer; }
         .table thead th {
             font-weight: 500;
             letter-spacing: 0.5px;
@@ -248,4 +248,18 @@
             }
         }
     </style>
+@endpush
+
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('tr.clickable-row[data-href]').forEach((row) => {
+            row.addEventListener('click', () => window.location = row.dataset.href);
+
+            row.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') window.location = row.dataset.href;
+            });
+        });
+    });
+</script>
 @endpush

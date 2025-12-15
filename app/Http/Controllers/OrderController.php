@@ -119,5 +119,23 @@ class OrderController extends Controller
       ], 500);
     }
   }
+
+  public function orderStatus($id) {
+    $order = Order::with(['items.product', 'store'])
+      ->where('id', $id)
+      ->where('user_id', Auth::id())
+      ->firstOrFail();
+
+    $item = $order->items->first();
+    $product = $item?->product;
+
+    $orderTime = $order->created_at ? $order->created_at->format('Y-m-d H:i:s') : '-';
+
+    $deadline = ($order->created_at && $product)
+      ? $order->created_at->copy()->addMinutes((int) $product->pickup_duration)->format('Y-m-d H:i:s')
+      : '-';
+
+    return view('pages.statuspage', compact('order', 'item', 'product', 'orderTime', 'deadline'));
+  }
 }
 

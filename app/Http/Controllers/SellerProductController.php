@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class SellerProductController extends Controller {
     public function dashboard(Request $request) {
@@ -84,14 +85,34 @@ class SellerProductController extends Controller {
     public function updateOrder($id) {
         $store = Store::where('user_id', Auth::id())->firstOrFail();
 
-        $order = Order::where('store_id', $store->id)->findOrFail($id);
+        return DB::transaction(function () use ($store, $id) {
+            $order = Order::where('store_id', $store->id)
+                ->lockForUpdate()
+                ->findOrFail($id);
 
-        if ($order->status !== 'pending') {
-            return back()->with('error', __('sellerOrder.pending_order_error'));
-        }
+            if ($order->status !== 'pending') {
+                return back()->with('error', __('sellerOrder.pending_order_error'));
+            }
 
-        $order->update(['status' => 'finished']);
+            $items = $order->items()->get();
 
-        return back()->with('success', __('sellerOrder.finish_update_order'));
+            foreach ($items as $item) {
+                $product = Product::where('id', $item->product_id)
+                    ->lockForUpdate()
+                    ->firstOrFail();
+
+                if ($item->quantity > $product->total_quantity) {
+                    return back()->with('error', __('product.quantity_exceeds_stock', [
+                        'available' => $product->total_quantity
+                    ]));
+                }
+
+                $product->decrement('total_quantity', (int) $item->quantity);
+            }
+
+            $order->update(['status' => 'finished']);
+
+            return back()->with('success', __('sellerOrder.finish_update_order'));
+        });
     }
 }

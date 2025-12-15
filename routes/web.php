@@ -50,6 +50,7 @@ Route::prefix('/product')->group(function () {
 
 Route::prefix('/order')->middleware(['auth'])->group(function () {
     Route::post('/reserve', [OrderController::class, 'reserve'])->name('order.reserve');
+    Route::get('/status/{id}', [OrderController::class, 'orderStatus'])->name('order.status');
 });
 Route::prefix('/profile')->group(function () {
     Route::get('/{id}', [ProfileController::class, 'showProfile'])->name('route.profile.view');
@@ -63,6 +64,7 @@ Route::get('/lang/{lang}', function ($lang) {
     }
     return redirect()->back();
 })->name('lang.switch');
+
 
 Route::prefix('/seller')->middleware(['role:seller'])->group(function () { 
     Route::get('/dashboard',[SellerProductController::class,'dashboard'])->name('seller.dashboard');   
