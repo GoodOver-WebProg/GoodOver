@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'title' => 'Seller Dashboard',
+    'title' => 'GoodOver - Seller Dashboard',
 
     'sidebar' => [
         'title' => 'Seller Dashboard',

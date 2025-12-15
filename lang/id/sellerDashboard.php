@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'title' => 'GoodOver - Dasbor Penjual',
     'sidebar' => [
         'title' => 'Dasbor Penjual',
         'product' => 'Produk',
