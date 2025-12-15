@@ -1,5 +1,5 @@
 @extends('layout.master')
-@section('title', __('seller_dashboard.title'))
+@section('title', __('sellerDashboard.title'))
 
 @push('styles')
 <style>
