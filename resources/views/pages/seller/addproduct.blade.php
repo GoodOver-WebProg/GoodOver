@@ -116,10 +116,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <button type="submit" class="btn btn-outline-dark px-4">
-                        {{ __('sellerProduct.submit_button') }}
-                    </button>
                 </div>
 
                 {{-- RIGHT: image upload --}}
@@ -142,6 +138,11 @@
                     @enderror
                 </div>
 
+                <div class="col-12 col-md-4">
+                    <button type="submit" class="btn btn-outline-dark px-4">
+                        {{ __('sellerProduct.submit_button') }}
+                    </button>
+                </div>
             </div>
         </form>
     </div>
