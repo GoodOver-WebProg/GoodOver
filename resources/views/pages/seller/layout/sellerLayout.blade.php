@@ -146,6 +146,11 @@
         border-radius: 15px;
         display: none;
     }
+    @media (max-width: 768px) {
+    .seller-sidebar { 
+        min-height: calc(100vh - 500px);
+    }
+    }
 </style>
 @endpush
 
