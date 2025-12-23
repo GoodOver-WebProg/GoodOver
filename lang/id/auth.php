@@ -25,6 +25,7 @@ return [
     'login' => 'Login ke akun mu',
     'sub_2' => 'Dan lanjutkan perjalanan mu di GoodOver',
     'register_reminder' => 'Belum mempunyai akun?',
+    'failed' => 'Email atau password salah',
 
 
     'Messages' => [
@@ -38,6 +39,7 @@ return [
         'alpha_num'   => ':Attribute hanya boleh huruf dan angka',
         'unique'      => ':Attribute sudah ada',
         'integer'     => ':Attribute harus berisi angka',
+        'exists'      => ':Attribute belum terdaftar'
     ],
 
     'attributes' => [

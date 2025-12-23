@@ -23,6 +23,7 @@ return [
     'login' => 'Login to your account',
     'sub_2' => 'And continue your journey at GoodOver',
     'register_reminder' => 'Doesn\'t have an account?',
+    'failed' => 'Email atau password is incorrect',
 
     'Messages' => [
         'required'    => 'All fields are required.',
@@ -35,6 +36,7 @@ return [
         'alpha_num'   => ':Attribute may only contain letters and numbers.',
         'unique'      => ':Attribute have already been taken',
         'integer'     => ':Attribute have to be an integer',
+        'exists'      => ':Attribute belum terdaftar'
     ],
 
     'attributes' => [

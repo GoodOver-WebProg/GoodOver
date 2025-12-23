@@ -12,27 +12,39 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthenticationController extends Controller {
     public function login(Request $request) {
-        $rules = [
-            'email' => 'required|email',
-            'password' => 'required|min:5|alpha_num'
-        ];
-        $notification = [
-            'required' => 'Semua atribute wajib diisi',
-            'email' => 'Format email belum sesuai (Harus mengandung @)',
-            'min' => ':Attribute minimal berisi :min karakter',
-        ];
+        try {
+            $rules = [
+                'email' => 'required|email|exists:users,email',
+                'password' => 'required|min:5|alpha_num'
+            ];
+            $notification = [
+                'required'  => __('auth.Messages.required'),
+                'email'     => __('auth.Messages.email'),
+                'min'       => __('auth.Messages.min'),
+                'alpha_num' => __('auth.Messages.alpha_num'),
+                'exists'    => __('auth.Messages.exists'),
+            ];
 
-        $validator = Validator::make($request->all(), $rules, $notification);
+            $validator = Validator::make($request->all(), $rules, $notification);
 
-        if ($validator->fails()) {
-            return redirect()->back()
-                ->withErrors($validator)
-                ->withInput();
-        }
+            if ($validator->fails()) {
+                return redirect()->back()
+                    ->withErrors($validator)
+                    ->withInput();
+            }
 
-        if (Auth::attempt($validator->validated())) {
-            $request->session()->regenerate();
-            return redirect()->route('home');
+            $credentials = $validator->validated();
+
+            if (!Auth::attempt($credentials)) {
+                return back()->withErrors(['email' => __('auth.failed')])
+                            ->withInput();
+            }else{
+                $request->session()->regenerate();
+                return redirect()->route('home');
+            }
+
+        } catch (Exception $error) {
+            return $error;
         }
     }
 
@@ -82,7 +94,6 @@ class AuthenticationController extends Controller {
                 $request->session()->regenerate();
                 return redirect()->route('home');
             }
-
         } catch (Exception $error) {
             return $error;
         }

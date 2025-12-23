@@ -6,7 +6,7 @@
         <div class="container">
             <div class="profile-bar mt-n5">
                 <div class="avatar">
-                    <img src="{{ asset('profile.png') }}" alt="Avatar">
+                    <img src="{{ asset('images/profile.png') }}" alt="Avatar">
                 </div>
 
                 <div class="profile-meta">

@@ -12,7 +12,7 @@
                         <button class="rounded-circle dropdown-toggle p-0 border-0 user-avatar-mobile"
                             style="height: 38px; width: 38px; overflow: hidden; cursor: pointer; position: relative; z-index: 1051;"
                             type="button" data-bs-toggle="dropdown" aria-expanded="false" id="mobileProfileDropdown">
-                            <img src="{{ Auth::user()->image_path ?? asset('images/register.jpg') }}" alt="User Avatar"
+                            <img src="{{ Auth::user()->image_path ?? asset('images/profile.png') }}" alt="User Avatar"
                                 class="h-100 w-100 object-fit-cover" style="pointer-events: none;">
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end"
@@ -176,7 +176,7 @@
                                 <button class="rounded-circle dropdown-toggle p-0 border-0"
                                     style="height: 35px; width: 35px; overflow: hidden;" type="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="{{ Auth::user()->image_path ?? asset('images/register.jpg') }}"
+                                    <img src="{{ Auth::user()->image_path ?? asset('images/profile.png') }}"
                                         alt="User Avatar" class="h-100 w-100 object-fit-cover">
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-end"
