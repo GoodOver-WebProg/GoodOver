@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'title' => 'Account Profile',
+    'title' => 'Store Profile',
     'store_name' => 'Store Name:',
     'contact' => 'Contact:',
     'opening_time' => 'Opening Hours:',

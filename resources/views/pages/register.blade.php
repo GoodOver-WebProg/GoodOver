@@ -11,7 +11,6 @@
 </head>
 
 <body>
-    {{-- Return to GoodOver Button --}}
     <div class="position-fixed top-0 start-0 m-3 back-to-goodover-btn" style="z-index: 1050;">
         <a href="{{ route('home') }}" class="btn btn-sm d-flex align-items-center text-decoration-none"
             style="background-color: #086D71; color: white; border-radius: 8px; padding: 8px 16px; font-size: 0.9rem; font-weight: 500; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(8, 109, 113, 0.3);"

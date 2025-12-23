@@ -42,8 +42,6 @@ Route::prefix('/login')->group(function () {
 
 Route::post('/logout', [AuthenticationController::class, 'logout'])->name('route.logout');
 
-Route::get('/list', [PageController::class, 'listPage'])->name('route.list');
-
 Route::prefix('/product')->group(function () {
     Route::get('/', [ProductController::class, 'getProduct'])->name('route.product');
 });

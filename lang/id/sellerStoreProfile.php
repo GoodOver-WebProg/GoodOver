@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'title' => 'Profil Akun',
+    'title' => 'Profil Toko',
     'store_name' => 'Nama Toko:',
     'contact' => 'Kontak:',
     'opening_time' => 'Waktu Pembukaan:',

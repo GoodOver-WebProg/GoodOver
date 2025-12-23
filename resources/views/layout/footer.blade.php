@@ -42,26 +42,11 @@
                             onmouseout="this.style.color='#6c757d'">
                             Home
                         </a>
-                    </li>
                     <li class="mb-2">
-                        <a href="{{ route('home') }}#foods" class="text-secondary text-decoration-none"
+                        <a href="{{ route('route.product') }}#foods" class="text-secondary text-decoration-none"
                             style="transition: color 0.3s ease;" onmouseover="this.style.color='#ffffff'"
                             onmouseout="this.style.color='#6c757d'">
                             Foods
-                        </a>
-                    </li>
-                    <li class="mb-2">
-                        <a href="#" class="text-secondary text-decoration-none"
-                            style="transition: color 0.3s ease;" onmouseover="this.style.color='#ffffff'"
-                            onmouseout="this.style.color='#6c757d'">
-                            About
-                        </a>
-                    </li>
-                    <li class="mb-2">
-                        <a href="#" class="text-secondary text-decoration-none"
-                            style="transition: color 0.3s ease;" onmouseover="this.style.color='#ffffff'"
-                            onmouseout="this.style.color='#6c757d'">
-                            Contact
                         </a>
                     </li>
                 </ul>
@@ -84,6 +69,16 @@
                         <i class="bi bi-geo-alt text-secondary"></i>
                         <span class="text-secondary">Indonesia</span>
                     </li>
+                </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <h5 class="text-uppercase fw-semibold mb-3" style="color: #ffffff; font-size: 0.9rem; letter-spacing: 1px;">Interested in joining us as a Seller?
+                </h5>
+                <ul class="list-unstyled">
+                    <a href="{{ route('register.seller.view') }}" class="text-white text-decoration-none" style="transition: color 0.3s ease;">
+                        Click Here
+                    </a>
                 </ul>
             </div>
         </div>
