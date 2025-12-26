@@ -244,7 +244,7 @@
                                             <img src="{{ $product->image_url }}" alt="{{ $product->name }}"
                                                 class="img-fluid"
                                                 style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;"
-                                                onerror="this.onerror=null; this.src='{{ asset('images/burger.jpg') }}'; this.style.display='block'; this.parentElement.querySelector('.fallback-placeholder').style.display='none';"
+                                                onerror="this.onerror=null; this.src='{{ asset('images/products/burger.jpg') }}'; this.style.display='block'; this.parentElement.querySelector('.fallback-placeholder').style.display='none';"
                                                 onmouseover="this.style.transform='scale(1.1)'"
                                                 onmouseout="this.style.transform='scale(1)'">
                                             <div
@@ -295,7 +295,7 @@
                                             <img src="{{ $product->image_url }}" alt="{{ $product->name }}"
                                                 class="img-fluid"
                                                 style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;"
-                                                onerror="this.onerror=null; this.src='{{ asset('images/burger.jpg') }}'; this.style.display='block'; this.parentElement.querySelector('.fallback-placeholder').style.display='none';"
+                                                onerror="this.onerror=null; this.src='{{ asset('images/products/burger.jpg') }}'; this.style.display='block'; this.parentElement.querySelector('.fallback-placeholder').style.display='none';"
                                                 onmouseover="this.style.transform='scale(1.1)'"
                                                 onmouseout="this.style.transform='scale(1)'">
                                             <div

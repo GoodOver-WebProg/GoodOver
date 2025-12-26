@@ -23,7 +23,7 @@ class ProductSeeder extends Seeder {
                 'name'           => $faker->words(3, true),
                 'price'          => $faker->numberBetween(5000, 50000),
                 'description'    => $faker->sentence(10),
-                'image_path'     => 'images/burger.jpg',
+                'image_path'     => 'images/products/burger.jpg',
                 'status'         => $faker->randomElement(['active', 'inactive']),
                 'total_quantity' => $faker->numberBetween(1, 100),
                 'pickup_duration' => $faker->numberBetween(60, 120),

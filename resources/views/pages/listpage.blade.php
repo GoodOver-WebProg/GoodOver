@@ -361,11 +361,11 @@
                                         <div class="card h-100 border-0 shadow-sm product-card" style="cursor: pointer;">
                                             <div class="card-img-top position-relative"
                                                 style="height: 180px; background: linear-gradient(135deg, #FFF9C4 0%, #fff8e1 100%); overflow: hidden;">
-                                                <img src="{{ $product->image_path ? asset($product->image_path) : asset('images/burger.jpg') }}"
+                                                <img src="{{ $product->image_path ? asset($product->image_path) : asset('images/products/burger.jpg') }}"
                                                     class="card-img-top object-fit-cover"
                                                     style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;"
                                                     alt="{{ $product->name }}"
-                                                    onerror="this.onerror=null; this.src='{{ asset('images/burger.jpg') }}';"
+                                                    onerror="this.onerror=null; this.src='{{ asset('images/products/burger.jpg') }}';"
                                                     onmouseover="this.style.transform='scale(1.1)'"
                                                     onmouseout="this.style.transform='scale(1)'">
                                             </div>
@@ -392,7 +392,7 @@
                         <div class="col">
                             <a href="#" class="text-decoration-none text-dark">
                                 <div class="card h-100 border-0 shadow-sm">
-                                    <img src="{{ asset('images/burger.jpg') }}" class="card-img-top object-fit-cover"
+                                    <img src="{{ asset('images/products/burger.jpg') }}" class="card-img-top object-fit-cover"
                                         style="height: 180px;" alt="Product Name">
 
                                     <div class="card-body p-2">

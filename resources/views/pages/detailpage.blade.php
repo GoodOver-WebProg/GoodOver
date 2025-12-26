@@ -28,7 +28,7 @@
                             @if ($product->image_url)
                                 <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="img-fluid"
                                     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;"
-                                    onerror="this.onerror=null; this.src='{{ asset('images/burger.jpg') }}'; this.style.display='block'; this.parentElement.querySelector('.fallback-placeholder').style.display='none';">
+                                    onerror="this.onerror=null; this.src='{{ asset('images/products/burger.jpg') }}'; this.style.display='block'; this.parentElement.querySelector('.fallback-placeholder').style.display='none';">
                                 <div class="fallback-placeholder d-none d-flex align-items-center justify-content-center h-100"
                                     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #FFF9C4, #fff8e1);">
                                     <i class="bi bi-image" style="font-size: 5rem; color: #086D71;"></i>
