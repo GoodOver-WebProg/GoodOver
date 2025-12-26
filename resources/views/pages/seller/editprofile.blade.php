@@ -77,9 +77,6 @@
                         @error('location') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
 
-                    <button type="submit" class="btn btn-outline-dark px-4">
-                        {{ __('sellerStoreProfile.save') }}
-                    </button>
                 </div>
 
                 {{-- RIGHT: image upload --}}
@@ -104,6 +101,12 @@
                     @error('image_path')
                     <div class="text-danger small mt-2">{{ $message }}</div>
                     @enderror
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <button type="submit" class="btn btn-outline-dark px-4">
+                        {{ __('sellerProduct.submit_button') }}
+                    </button>
                 </div>
             </div>
         </form>
