@@ -22,6 +22,7 @@ return new class extends Migration
                 $table->string('status');
                 $table->string('order_number');
                 $table->timestamps();
+                $table->integer('total_price');
             });
         }
     }
