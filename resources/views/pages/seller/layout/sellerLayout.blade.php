@@ -165,7 +165,7 @@
                         style="width:40px;height:40px;border:1px solid #e5e7eb;">
                         <i class="bi bi-grid"></i>
                     </div>
-                    <div class="fw-bold">Dashboard</div>
+                    <div class="fw-bold">{{ __('sellerDashboard.sidebar.title') }}</div>
                 </div>
 
                 <div class="list-group">
@@ -181,7 +181,7 @@
                         @style([
                             'background:#086D71;border-color:#086D71;' => request()->routeIs('seller.dashboard'),
                         ])>
-                        <span><i class="bi bi-box me-2"></i>Product</span>
+                        <span><i class="bi bi-box me-2"></i>{{ __('sellerDashboard.sidebar.product') }}</span>
                         <i class="bi bi-chevron-right"></i>
                     </a>
                     
@@ -197,7 +197,7 @@
                         @style([
                             'background:#086D71;border-color:#086D71;' => request()->routeIs('seller.product.add.view'),
                         ])>
-                        <span><i class="bi bi-plus-circle me-2"></i>Add Product</span>
+                        <span><i class="bi bi-plus-circle me-2"></i>{{ __('sellerDashboard.sidebar.add_product') }}</span>
                         <i class="bi bi-chevron-right"></i>
                     </a>
                     
@@ -213,7 +213,7 @@
                         @style([
                             'background:#086D71;border-color:#086D71;' => request()->routeIs('seller.manageOrder'),
                         ])>
-                        <span><i class="bi bi-list-ul me-2"></i>Order management</span>
+                        <span><i class="bi bi-list-ul me-2"></i>{{ __('sellerDashboard.sidebar.order_management') }}</span>
                         <i class="bi bi-chevron-right"></i>
                     </a>
 
