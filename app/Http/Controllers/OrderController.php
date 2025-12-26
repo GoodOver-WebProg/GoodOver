@@ -105,10 +105,7 @@ class OrderController extends Controller
           'unit_price' => $price,
         ]);
 
-        $old_total = $product->total_quantity;
-        $product->update([
-          'total_quantity' => $old_total-$quantity,
-        ]);
+        $product->decrement('total_quantity', $quantity);
 
         return response()->json([
           'success' => true,

@@ -74,6 +74,10 @@ class SellerProductController extends Controller {
 
             if (now()->greaterThan($deadline)) {
                 $order->update(['status' => 'cancelled']);
+                Product::where('id', $product->id)
+                    ->lockForUpdate()
+                    ->first()
+                    ->increment('total_quantity', $item->quantity);
             }
         }
 
