@@ -7,7 +7,7 @@
 
         {{-- Header --}}
         <div class="mb-4">
-            <h4 class="mb-0 fw-bold">{{ __('sellerProduct.title_add') }}</h4>
+            <h4 class="mb-0 fw-bold">{{ __('sellerProduct.title_edit') }}</h4>
         </div>
 
         <form action="{{ route('seller.product.edit', $product->id) }}" method="POST" enctype="multipart/form-data" id="productForm">
