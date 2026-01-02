@@ -6,7 +6,11 @@
         <div class="container">
             <div class="profile-bar mt-n5">
                 <div class="avatar">
-                    <img src="{{ asset('images/profile.png') }}" alt="Avatar">
+                    @if($user->profile_picture)
+                        <img src="{{ asset('storage/' . $user->profile_picture) }}" alt="Avatar">
+                    @else
+                        <img src="{{ asset('images/profile.png') }}" alt="Avatar">
+                    @endif
                 </div>
 
                 <div class="profile-meta">
