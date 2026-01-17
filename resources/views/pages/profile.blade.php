@@ -31,7 +31,7 @@
         <div class="info-wrap">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-6 contact-list">
+                    <div class="col-md-6 contact-list mb-3">
                         <div class="contact-item">
                             <h4>Total order: {{ $totalOrders }}</h4>
                         </div>
