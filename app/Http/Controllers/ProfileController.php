@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 
@@ -65,15 +66,17 @@ class ProfileController extends Controller
         }
 
         if ($request->hasFile('profile_picture')) {
-            if ($user->profile_picture && Storage::disk('public')->exists($user->profile_picture)) {
-                Storage::disk('public')->delete($user->profile_picture);
+            if ($user->image_path && file_exists(public_path($user->image_path))) {
+                unlink(public_path($user->image_path));
             }
 
-            $path = $request->file('profile_picture')->store('profile_pictures', 'public');
+            $file = $request->file('profile_picture');
+            $filename = time() . '_' . preg_replace('/\s+/', '_', $file->getClientOriginalName());
 
-            $user->profile_picture = $path;
+            $file->move(public_path('images/profile'), $filename);
+
+            $user->image_path = 'images/profile/' . $filename;
         }
-        // ----------------------------
 
         $user->save();
 

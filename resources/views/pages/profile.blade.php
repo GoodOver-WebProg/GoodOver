@@ -6,8 +6,8 @@
         <div class="container">
             <div class="profile-bar mt-n5">
                 <div class="avatar">
-                    @if($user->profile_picture)
-                        <img src="{{ asset('storage/' . $user->profile_picture) }}" alt="Avatar">
+                    @if($user->image_path)
+                        <img src="{{ asset($user->image_path) }}" alt="Avatar">
                     @else
                         <img src="{{ asset('images/profile.png') }}" alt="Avatar">
                     @endif

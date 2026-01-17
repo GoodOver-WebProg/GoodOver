@@ -27,14 +27,25 @@
                                 id="profile_picture"
                                 name="profile_picture"
                                 accept="image/*">
+
                             @error('profile_picture')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
 
-                            @if($user->profile_picture)
+                            @if($user->image_path)
                                 <div class="mt-2">
                                     <small class="text-muted">Current Image:</small><br>
-                                    <img src="{{ asset('storage/' . $user->profile_picture) }}" alt="Current Profile" width="80" class="img-thumbnail rounded-circle">
+                                    <img src="{{ asset($user->image_path) }}"
+                                        alt="Current Profile"
+                                        width="80"
+                                        height="80"
+                                        style="object-fit: cover;"
+                                        class="img-thumbnail rounded-circle">
+                                </div>
+                            @else
+                                <div class="mt-2">
+                                    <img src="https://ui-avatars.com/api/?name={{ urlencode($user->username) }}"
+                                        class="img-thumbnail rounded-circle" width="80">
                                 </div>
                             @endif
                         </div>
