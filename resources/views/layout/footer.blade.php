@@ -5,7 +5,7 @@
             <div class="col-lg-4 col-md-6">
                 <h3 class="fw-bold mb-3" style="font-size: 1.8rem; color: #ffffff;">GoodOver</h3>
                 <p class="text-secondary mb-4" style="line-height: 1.6; max-width: 300px;">
-                    Save food, save money, and help reduce food waste with GoodOver.
+                    {{ __('footer.description') }}
                 </p>
                 <div class="d-flex gap-3">
                     <a href="#" class="text-light text-decoration-none"
@@ -55,7 +55,7 @@
             {{-- Right Section --}}
             <div class="col-lg-3 col-md-6">
                 <h5 class="text-uppercase fw-semibold mb-3"
-                    style="color: #ffffff; font-size: 0.9rem; letter-spacing: 1px;">Contact</h5>
+                    style="color: #ffffff; font-size: 0.9rem; letter-spacing: 1px;">{{ __('footer.contact') }}</h5>
                 <ul class="list-unstyled">
                     <li class="mb-2 d-flex align-items-center gap-2">
                         <i class="bi bi-envelope text-secondary"></i>
@@ -73,11 +73,11 @@
             </div>
 
             <div class="col-lg-3 col-md-6">
-                <h5 class="text-uppercase fw-semibold mb-3" style="color: #ffffff; font-size: 0.9rem; letter-spacing: 1px;">Interested in joining us as a Seller?
+                <h5 class="text-uppercase fw-semibold mb-3" style="color: #ffffff; font-size: 0.9rem; letter-spacing: 1px;">{{ __('footer.seller') }}
                 </h5>
                 <ul class="list-unstyled">
                     <a href="{{ route('register.seller.view') }}" class="text-white text-decoration-none" style="transition: color 0.3s ease;">
-                        Click Here
+                        {{ __('footer.seller_confirm') }}
                     </a>
                 </ul>
             </div>

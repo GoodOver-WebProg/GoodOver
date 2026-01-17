@@ -7,6 +7,7 @@ return [
   'search_placeholder' => 'Cari produk...',
   'view_details' => 'Lihat Detail',
   'how_it_works' => 'Bagaimana Cara Kerjanya?',
+  'work_desc' => 'Mulai dalam 3 langkah simpel dan mulai hemat uang dan kurangi sampah makanan',
   'find_food' => 'Cari Makanan',
   'find_food_desc' => 'Jelajahi makanan terjangkau atau gratis di dekat Anda.',
   'reserve_easily' => 'Reservasi Mudah',
@@ -21,5 +22,7 @@ return [
   'see_more' => 'Lihat Produk Lainnya',
   'explore_todays_highlights' => 'Jelajahi Sorotan Hari Ini',
   'in_stock' => 'Tersedia',
+  'header_history' => 'Riwayat',
+  'header_food' => 'Makanan',
 ];
 

@@ -7,6 +7,7 @@ return [
     'search_placeholder' => 'Search products...',
     'view_details' => 'View Details',
     'how_it_works' => 'How It Works?',
+    'work_desc' => 'Get started in three simple steps and start saving money while reducing food waste',
     'find_food' => 'Find Food',
     'find_food_desc' => 'Explore affordable or free food near you.',
     'reserve_easily' => 'Reserve Easily',
@@ -21,5 +22,6 @@ return [
     'see_more' => 'See More Products',
     'explore_todays_highlights' => 'Explore Today\'s Highlights',
     'in_stock' => 'In Stock',
+    'header_history' => 'History',
+    'header_food' => 'Foods',
 ];
-

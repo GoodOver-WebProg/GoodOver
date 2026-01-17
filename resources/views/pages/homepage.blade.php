@@ -356,7 +356,7 @@
                 <h2 class="section-title fw-bold mb-3" style="font-size: 2.8rem; color: #333;">
                     {{ __('home.how_it_works') }}</h2>
                 <p class="text-muted" style="font-size: 1.1rem; max-width: 600px; margin: 0 auto;">
-                    Get started in three simple steps and start saving money while reducing food waste
+                    {{ __('home.work_desc') }}
                 </p>
             </div>
             <div class="row g-4 justify-content-center">

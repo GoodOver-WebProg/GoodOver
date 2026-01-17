@@ -99,9 +99,9 @@
                 {{-- Right Side Menu --}}
                 <ul class="navbar-nav ms-auto align-items-center nav-animated-underline">
                     @auth
-                        <li class="nav-item"><a class="nav-link text-white" href="{{ route('route.profile.history',Auth::user()->id) }}">History</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="{{ route('route.profile.history',Auth::user()->id) }}">{{__('home.header_history')}}</a></li>
                     @endauth
-                    <li class="nav-item"><a class="nav-link text-white" href="{{ route('route.product') }}">Foods</a>
+                    <li class="nav-item"><a class="nav-link text-white" href="{{ route('route.product') }}">{{__('home.header_food')}}</a>
                     </li>
 
                     @guest
@@ -176,7 +176,7 @@
                                 <button class="rounded-circle dropdown-toggle p-0 border-0"
                                     style="height: 35px; width: 35px; overflow: hidden;" type="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="{{ Auth::user()->image_path ?? asset('images/profile.png') }}"
+                                    <img src="{{ Auth::user()->image_path ? asset(Auth::user()->image_path) :  asset('images/profile.png')}}"
                                         alt="User Avatar" class="h-100 w-100 object-fit-cover">
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-end"
